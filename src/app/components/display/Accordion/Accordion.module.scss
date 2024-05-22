@@ -1,0 +1,25 @@
+.accordion {
+    @apply w-[100%];
+
+    .button {
+        @apply px-[26px] py-[10px] flex items-center justify-between w-[100%] text-[#292929] text-xl font-bold dark:text-white;
+
+        span {
+            @apply flex items-center justify-center text-[#292929] text-[12px] font-bold
+            w-[23px] h-[23px] bg-white rounded-full;
+        }
+
+        &:hover {
+            @apply bg-[#f2f2f2] dark:bg-zinc-800;
+        }
+    }
+
+    .content {
+       @apply px-[26px] flex flex-col gap-[5px] overflow-hidden transition-all duration-[.3s] ease-in-out;
+    }
+
+    .textActive {
+        @apply text-sky-500 dark:text-sky-500;
+    }
+
+}

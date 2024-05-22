@@ -1,0 +1,104 @@
+.task_detail {
+    @apply bg-[#e7e5e5] dark:bg-zinc-900
+    py-[20px] px-[30px] rounded-[12px] max-w-[600px] w-[100%] h-[535px]
+    transition-all duration-[.5s] ease-in-out overflow-auto;
+
+    @media (max-width: 1000px) {
+        @apply h-[328px] max-w-[550px];
+    }
+
+    @media (min-width: 1000px) {
+        animation: top .4s linear;
+    }
+
+    &::-webkit-scrollbar {
+        @apply w-[4px];
+    }
+
+    &::-webkit-scrollbar-track {
+        @apply bg-transparent; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @apply bg-[#B5B5B5] rounded-[12px];
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        @apply bg-[#dbdbdb];
+    }
+
+    .top {
+        @apply flex items-center justify-between;
+    }
+    
+    .map {
+        @apply flex items-center gap-[7px];
+    
+            span {
+                @apply text-[14px] text-[#292929] dark:text-white;
+            }
+    }
+    
+    textarea {
+        @apply resize-none w-[100%] outline-none bg-transparent mt-[20px] text-[#292929] text-[30px] font-bold dark:text-white;
+    }
+    
+    .right {
+       @apply flex items-center gap-[12px];
+    
+        button {
+    
+                 svg {
+                    @apply text-[20px];
+                }
+        
+            }
+    
+    }
+
+    .todayTask {
+        @apply text-[#00B2FF];
+     }
+
+     .checkActive {
+        @apply text-[#00B2FF] bg-white rounded-full;
+     }
+    
+    .categories {
+        @apply mt-[10px] flex items-center gap-[10px];
+    
+         button {
+             @apply py-[5px] px-[10px] flex items-center gap-[10px] text-[14px] font-bold
+             rounded-[20px] bg-[#dad8d8] dark:bg-stone-950 dark:text-white;
+    
+                 svg {
+                     @apply text-[16px];
+                 }
+         }
+     }
+
+     @keyframes top {
+        from {  
+            transform: translateY(100px);
+            opacity: 0;
+        } to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+     }
+
+     &.taskDone {
+         .map, .categories {
+            @apply opacity-50;
+        }
+        
+        textarea {
+            @apply opacity-50;
+        }
+ 
+     }
+
+}
+
+
+

@@ -1,0 +1,9 @@
+.auth_button {
+    @apply mt-[40px] w-[100%] py-[16px] text-[white] text-[14px] font-bold leading-normal
+    bg-[#5552D2] border-[#7775F0] border-solid rounded-[12px]
+    transition duration-[.5s] ease-in-out;
+
+    &:hover {
+        @apply bg-[#7775F0];
+    }
+}

@@ -1,0 +1,196 @@
+.modal_profile {
+    @apply fixed left-[20px] top-[80px] z-[800] max-w-[450px] w-[100%] bg-[#e1dfdf] rounded-xl border border-zinc-900
+    overflow-hidden opacity-0 translate-y-[-20px] invisible
+    transition-all ease-in-out duration-[.3s] text-[#292929] dark:text-white dark:bg-zinc-900 dark:border-white;
+
+    @media (max-width: 1000px) {
+        @apply left-0 z-[5030] top-0 h-[100%] pt-[50px] rounded-none;
+    }
+
+    .close_mob {
+       @apply hidden absolute top-[20px] right-[20px];
+
+        svg {
+            @apply text-[25px];
+        }
+
+        @media (max-width: 1000px) {
+            @apply block;
+        }
+
+    }
+
+    .buttons {
+        @apply flex flex-col;
+
+            button {
+                @apply w-full h-[50px] px-[20px] text-start;
+
+                &:hover {
+                    @apply bg-[#f2f2f2] dark:bg-[#292929];
+                }
+
+                &:nth-child(5) {
+                    @apply text-[#FF5E5E];
+                }
+            }
+
+            a {
+                @apply flex items-center w-full h-[50px] px-[20px] text-start;
+
+                &:hover {
+                    @apply bg-[#f2f2f2] dark:bg-[#292929];
+                }
+            }
+
+    }
+
+    .blocks {
+        @apply opacity-0 translate-x-[100%] absolute top-0 w-[100%] h-[100%] bg-[#e1dfdf]
+        transition-all ease-in-out duration-[.3s] dark:bg-[#1A1A1A];
+    }
+
+    .back {
+        @apply absolute top-[10px] left-[10px];
+
+        svg {
+            @apply text-[20px];
+        }
+    }
+
+    // actives
+
+    &.active_profile {
+        @apply opacity-100 translate-y-[0] visible;
+    }
+
+    .active_tab {
+        @apply translate-x-0 opacity-100;
+    }
+
+}
+
+.thema {
+    @apply flex items-center justify-center flex-col gap-[20px];
+
+    h2 {
+        @apply text-[20px] font-bold;
+    }
+
+    .create {
+        @apply relative flex justify-between w-[56px] h-[26px] p-[5px] bg-[#545454] rounded-[50px] border-0 z-[2];
+
+        svg {
+            @apply text-[#292929] text-[16px];
+        }
+    
+            &::after {
+                content: '';
+                @apply absolute top-[1px] left-[1px] block w-[24px] h-[24px] rounded-[50%] bg-white 
+                transition duration-[.3s] ease-in-out z-[-1];
+    
+                &.active_dark {
+                    @apply translate-x-[30px];
+                }
+            }
+    
+    }
+
+}
+
+.background {
+
+    h2 {
+        @apply pt-[5px] pr-[10px] flex items-center justify-center text-[20px] font-bold;  
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        overflow: auto;
+        height: 100%;
+        padding: 20px 10px 50px;
+
+        &::-webkit-scrollbar {
+            @apply w-[7px];
+        }
+      
+        &::-webkit-scrollbar-track {
+            @apply bg-transparent; 
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            @apply bg-[#B5B5B5] rounded-[12px];
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            @apply bg-[#dbdbdb];
+        }
+    }
+
+    .card {
+        @apply cursor-pointer w-[100%] h-[100px] rounded-[10px] border-[2px] border-solid border-transparent overflow-hidden;
+
+            img {
+                @apply w-[100%] h-[100%] object-cover;
+            }
+    }
+
+    
+    .activeBack {
+        @apply border-[#00B2FF];
+    }
+
+}
+
+.content_h {
+    @apply h-[300px];
+}
+
+// profile 
+
+.profile {
+
+    h2 {
+        @apply pt-[10px] text-[20px] font-bold text-center;
+    }
+
+    .info {
+        @apply mt-[20px] flex flex-col gap-[5px] justify-center items-center;
+
+        .avatar {
+            input {
+                @apply hidden;
+            }
+
+            label {
+                @apply cursor-pointer relative block w-[70px] h-[70px] rounded-full bg-black  overflow-hidden
+                bg-cover bg-no-repeat transition duration-[.3s] ease-in-out;
+
+                &:after {
+                    @apply content-[''] absolute top-[50%] left-[50%] w-[50px] h-[50px] bg-contain bg-no-repeat
+                    opacity-0 transition duration-[.3s] ease-in-out;
+                    transform: translate(-50%, -50%);
+                    background: url('/camera.svg');
+                }
+
+                &:hover {
+                    &::after {
+                       @apply opacity-100;
+                    }
+                }
+
+            }
+        }
+
+        span {
+            @apply text-[14px] font-bold;
+        }
+
+        .fullName {
+            @apply mt-[10px] text-[18px];
+        }
+    }
+
+}

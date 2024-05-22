@@ -1,0 +1,61 @@
+.task {
+    @apply cursor-pointer relative px-[20px] py-[25px] flex items-center max-w-[650px] w-[100%] bg-[#d8d5d5] rounded-[12px] dark:bg-[#232323];
+
+    .task_text {
+        @apply flex items-center gap-[15px];
+        
+        span {
+            @apply text-[#292929] text-base font-bold dark:text-white;
+            word-break: break-word;
+        }
+
+        button {
+            svg {
+                @apply text-[25px];
+            }
+        }
+
+    }
+
+    .fun {
+        @apply flex items-center gap-[5px] pr-[20px] absolute right-0;
+
+            svg {
+                @apply text-[20px];
+            }
+    }
+
+    .mains {
+        @apply flex flex-col gap-[5px];
+    }
+
+    .map {
+        @apply relative w-fit flex items-center gap-[7px];
+    
+            span {
+                @apply text-[12px] text-[#292929] dark:text-white;
+            }
+
+            svg {
+                @apply text-[12px];
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                border-bottom: 1px solid white;
+                width: 100%;
+                opacity: 0;
+                @apply border-[#232323] dark:border-white;
+            }
+
+            &:hover {
+                &::after {
+                    opacity: 1;
+                }
+            }
+    }
+
+}

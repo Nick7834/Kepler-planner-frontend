@@ -1,0 +1,55 @@
+.task_section {
+
+    .task_block {
+        @apply invisible fixed top-0 right-[-120px] py-[25px] px-[15px] flex flex-col gap-[30px] bg-[#e7e5e5] w-[350px] h-[100vh]
+        opacity-0 transition-all duration-[.3s] ease-in-out dark:bg-[#1A1A1A];
+
+        @media (max-width: 1000px) {
+            @apply z-[5001];
+            height: calc(100vh - 81px);
+        }
+    
+    }
+
+    h3 {
+        @apply text-[#292929] text-xl font-bold dark:text-white;
+    }
+
+    .tasks {
+       @apply flex flex-col gap-[15px] overflow-auto;
+
+       &::-webkit-scrollbar {
+            @apply w-[7px];
+        }
+      
+        &::-webkit-scrollbar-track {
+            @apply bg-transparent; 
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            @apply bg-[#B5B5B5] rounded-[12px];
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            @apply bg-[#dbdbdb];
+        }
+    }
+
+    .open {
+       @apply z-50 fixed top-[45%] right-0 py-[40px] px-[15px] bg-[#f6f6f6] rounded-l-[20px] dark:bg-[#161616];
+       box-shadow: -5px 1px 10px 3px rgba(32, 32, 32, 0.2);
+
+        @media (max-width: 1000px) {
+            @apply px-[5px] z-[5002];
+        }
+
+        svg {
+            @apply text-[25px];
+        }
+    }
+
+    .active_tasks {
+        @apply right-0 opacity-100 visible;
+    }
+
+}

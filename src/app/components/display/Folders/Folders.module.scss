@@ -1,0 +1,62 @@
+.folder_block {
+
+    .lists_block {
+       @apply mt-[30px] pr-[25px] flex items-center w-[100%] h-[40px];
+
+        button {
+            @apply pl-[25px] w-[100%] h-[100%] text-start text-[#292929] text-lg font-bold dark:text-white;
+        }
+
+        span {
+            @apply flex items-center justify-center text-zinc-900 text-[12px] font-bold
+            w-[23px] h-[22px] bg-white rounded-full;
+        }
+
+        div {
+            @apply cursor-pointer;
+
+            svg {
+                @apply text-2xl;
+            }
+        }
+
+        &:hover {
+            @apply bg-[#f2f2f2] dark:bg-[#292929];
+        }
+    }
+
+
+    .folders {
+        @apply overflow-hidden transition-all duration-[.3s] ease-in-out;
+
+        a {
+            @apply pl-[25px] flex justify-start items-center gap-[15px] w-[100%] h-[40px] text-[#292929] text-base font-medium dark:text-white;
+
+            span {
+                @apply flex items-center justify-center text-zinc-900 text-[12px] font-bold
+                w-[23px] h-[22px] bg-white rounded-full;
+            }
+
+                &:hover {
+                    @apply bg-[#f2f2f2] dark:bg-[#292929];
+                }
+        }
+
+    }
+
+    .folders .activeFolderNav {
+
+        a {
+            @apply text-[#00B2FF];
+        }
+
+        svg {
+            @apply text-[#00B2FF];
+        }
+
+        span {
+            @apply bg-[#00B2FF] text-white;
+        }
+    }
+
+}

@@ -1,0 +1,55 @@
+.addFolder {
+    @apply fixed top-[50%] left-[50%] z-[10000] 
+    w-[100%] h-[100%] invisible opacity-0
+    flex flex-col justify-center items-center
+    transition-all duration-[.3s] ease-in-out;
+
+    transform: translate(-50%, -50%);
+    background-color: rgba(35, 35, 35, 0.5);
+
+    @media (max-width: 1000px) {
+        @apply px-[15px];
+    }
+
+    .modal {
+        @apply z-[12000] bg-white dark:bg-[#2a292b]
+        py-[20px] px-[30px] rounded-[12px] max-w-[600px] w-[100%] 
+        border-solid border-[1px] border-[#dfdfdf] dark:border-[#403f41]
+        translate-y-[-50px] invisible opacity-0
+        transition-all duration-[.5s] ease-in-out;
+
+        @media (max-width: 1000px) {
+            @apply w-fit;
+        }
+    }
+
+    .close {
+        @apply block ml-auto text-xl font-semibold text-[#292929] dark:text-[white];
+    }
+
+
+    form {
+        input {
+            @apply mt-[40px] bg-transparent border-none outline-none w-[100%]
+            text-3xl font-medium font-['Ubuntu'] text-[#292929] dark:text-[white];
+        }
+    
+        button {
+            @apply mt-[40px] ml-auto block px-[65px] py-[10px] bg-[#008fff] rounded-[20px]
+            text-sm font-medium text-[#292929] dark:text-white;
+
+                &:disabled {
+                    @apply opacity-50;
+                }
+        }
+    }
+
+    &.open {
+        @apply visible opacity-100;
+    }
+
+    .openModal {
+        @apply translate-y-0 opacity-100 visible;
+    }
+
+}

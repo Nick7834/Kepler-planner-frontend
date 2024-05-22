@@ -1,0 +1,25 @@
+.allTaks {
+    @apply h-[100vh] flex flex-col justify-center items-center transition-all duration-[.2s] ease-in-out;
+
+    @media (max-width: 1000px) {
+        @apply h-full px-[15px] pt-[70px] pb-[50px];
+    }
+    
+        .folder_main {
+            @apply h-[100vh] flex flex-col justify-center items-center;
+
+            @media (max-width: 1000px) {
+                @apply h-full;
+            }
+        }
+    
+        .blocks {
+            @apply mt-[20px] grid items-center justify-center gap-[50px] w-[100%];
+    
+            grid-template-columns: clamp(21.875rem, calc(-3.125rem + 40vw), 34.375rem) clamp(20rem, calc(-15rem + 56vw), 37.5rem);
+
+            @media (max-width: 1000px) {
+                @apply flex flex-col-reverse gap-[30px];
+            }
+        }
+}

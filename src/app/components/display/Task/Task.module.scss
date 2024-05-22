@@ -1,0 +1,125 @@
+.task {
+    @apply relative px-[20px] py-[15px] flex items-center 
+    max-w-[650px] w-[100%] bg-[#e7e5e5] rounded-[12px] dark:bg-[#232323]
+    cursor-pointer  border-solid border-[2px] border-transparent;
+    // animation: task .3s linear;
+
+    .task_text {
+        @apply flex w-[100%] items-center gap-[15px];
+        
+        p {
+            @apply select-none w-[100%] text-[#232323] text-base font-bold dark:text-white;
+            word-break: break-word;
+        }
+
+        button {
+            svg {
+                @apply text-[25px];
+            }
+        }
+
+    }
+
+    .p_main {
+        @apply flex flex-col gap-[5px];
+    }
+
+    .map {
+        @apply relative w-fit flex items-center gap-[7px];
+    
+            span {
+                @apply text-[12px] text-[#292929] dark:text-white;
+            }
+
+            svg {
+                @apply text-[12px];
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                border-bottom: 1px solid white;
+                width: 100%;
+                opacity: 0;
+                @apply border-[#232323] dark:border-white;
+            }
+
+            &:hover {
+                &::after {
+                    opacity: 1;
+                }
+            }
+    }
+
+    .label {
+        @apply block cursor-pointer;
+    }
+
+    .original {
+        @apply hidden;
+
+            &:checked {
+               + .check {
+                    &::after {
+                        @apply bg-[#9b9b9b];
+                    }
+
+                    svg {
+                        @apply visible opacity-100;
+                    }
+                } 
+            }
+    }
+
+    .check {
+        @apply flex items-center justify-center relative border-[1px] border-[#d4d4d4] border-solid rounded-full
+        min-w-[20px] min-h-[20px] z-[2] overflow-hidden;
+
+            svg {
+                @apply absolute invisible opacity-0 z-[100] text-[#F7F7F7];
+            }
+
+            &::after {
+                @apply content-[''] absolute w-[100%] h-[100%] z-[-1] opacity-50;
+            }
+    }
+
+    .fun {
+        @apply flex items-center gap-[5px];
+
+            svg {
+                @apply text-[20px];
+            }
+    }
+    
+
+    &.doneTask {
+        @apply bg-transparent border-solid border-[2px] border-[#e7e5e5] dark:border-[#232323];
+
+        p {
+            @apply opacity-50 line-through;
+        }
+    }
+
+    .pinTask {
+        @apply text-[#00B2FF];
+    }
+
+    .hiddenPin {
+        display: none;
+    }
+
+    @keyframes task {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+}

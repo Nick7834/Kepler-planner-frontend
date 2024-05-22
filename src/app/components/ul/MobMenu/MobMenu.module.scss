@@ -1,0 +1,39 @@
+.mob_menu {
+    @apply fixed bottom-0 left-0 w-[100%] z-[5020] hidden;
+
+    @media (max-width: 1000px) {
+        @apply block;
+    }
+
+    .menu {
+        @apply flex items-center justify-between gap-[5px] m-[10px]
+        py-[10px] px-[15px] rounded-[20px] bg-[#e7e5e5] dark:bg-[#212121];
+    }
+
+    a {
+        @apply flex flex-col justify-center items-center text-center w-fit;
+
+        span {
+            svg {
+                @apply text-[20px];
+            }
+        }
+
+        p {
+            @apply text-[14px] text-[#292929] font-medium dark:text-white
+        }
+
+    }
+
+    .activeNav {
+
+        svg {
+            @apply text-[#00B2FF];
+        }
+
+        .text {
+            @apply text-[#00B2FF];
+        }
+}
+
+}

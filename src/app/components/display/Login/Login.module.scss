@@ -1,0 +1,119 @@
+.form_block {
+    @apply m-[10px] relative grid max-w-[1000px] w-[100%] min-h-[596px] z-[2]
+    border-[2px] border-white border-solid rounded-[12px] overflow-hidden
+    font-["Inter"];
+    grid-template-columns: repeat(2, 1fr);
+
+        &::after {
+            @apply content-[""] absolute top-0 left-0 w-[100%] h-[100%] bg-[#2D384A] opacity-70
+            z-[-1];
+        }
+
+        @media (max-width: 750px) {
+            @apply block max-w-[450px] h-[596px];
+        }
+
+        .block_left {
+            @apply relative bg-[url('/reg.jpg')] bg-no-repeat bg-center bg-cover z-[2]
+            flex flex-col items-center justify-center;
+
+            &::after {
+                @apply content-[""] absolute top-0 left-0 w-[100%] h-[100%] bg-[#2B2A53] opacity-50
+                z-[-1];
+            }
+
+            @media (max-width: 750px) {
+                @apply hidden;
+            }
+            
+        }
+
+        .logo{
+            @apply flex flex-col items-center justify-center gap-[22px];
+
+            span {
+                @apply text-white text-[20px] font-["Russo_One"] leading-[20px] font-normal;
+            }
+
+        }
+
+        // right block
+
+        .block_right {
+            @apply flex flex-col items-center justify-center;
+
+            h2 {
+                @apply text-white text-[20px] leading-[20px] font-bold;
+            }
+
+            @media (max-width: 750px) {
+                @apply h-[100%];
+            }
+
+        }
+
+        .form_blocks {
+           @apply relative max-w-[264px] w-[100%];
+        }
+
+        .registration, .log_in_block {
+           @apply mt-[35px];
+        }
+
+        .inputs {
+            @apply w-[100%] flex flex-col gap-[25px];
+         }
+
+        .input {
+            @apply w-[100%];
+
+            input {
+                @apply px-[20px] py-[16px] text-white text-[14px] font-bold 
+                leading-normal;
+            }
+
+            label {
+                @apply text-white;
+            }
+
+            fieldset {
+                @apply border-[2px] border-white border-solid;
+            }
+
+        }
+
+        .registration {
+            @apply absolute top-0 right-0 w-[100%] h-[100%]
+            transition-all duration-[.3s] ease-in-out translate-x-[150%];
+
+            &.reg_active {
+                @apply translate-x-0;
+            }
+
+        }
+
+        .log_in_block {
+            @apply translate-x-0 transition-all duration-[.3s] ease-in-out;
+
+            &.login_active {
+                @apply translate-x-[-150%];
+            }
+        }
+
+        .login_button {
+            @apply mt-[25px] flex border-none text-white text-[14px] font-medium 
+            leading-normal font-['Ubuntu'] mx-auto;
+        }
+
+}
+
+@keyframes modal {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

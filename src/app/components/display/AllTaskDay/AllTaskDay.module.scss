@@ -1,0 +1,28 @@
+.all {
+    @apply relative py-[20px] pb-[65px]  max-w-[550px] w-[100%] h-[535px] bg-[#e7e5e5] rounded-xl overflow-hidden dark:bg-zinc-900;
+
+    .tasks {
+        @apply h-[100%] overflow-auto;
+       
+        &::-webkit-scrollbar {
+            @apply w-[7px];
+        }
+      
+        &::-webkit-scrollbar-track {
+            @apply bg-transparent; 
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            @apply bg-[#B5B5B5] rounded-[12px];
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            @apply bg-[#dbdbdb];
+        }
+    }
+
+    .add {
+        @apply absolute bottom-0 left-0 z-[10] w-[100%] p-[10px] bg-[#e7e5e5] dark:bg-zinc-900 ;
+    }
+
+}

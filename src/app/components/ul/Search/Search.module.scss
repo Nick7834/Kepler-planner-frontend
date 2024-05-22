@@ -1,0 +1,43 @@
+.search_block {
+   
+    .back {
+        @apply absolute top-0 left-0 w-full h-full z-[5009] invisible opacity-0
+        transition-all duration-[.3s] ease-in-out;
+        background-color: rgba(35, 35, 35, 0.5);
+    }
+
+    .search {
+        @apply absolute top-[20px] right-[20px] z-[5009] flex items-center rounded-[20px] p-[10px] overflow-hidden;
+
+        &::after {
+            @apply content-[''] absolute top-0 left-0 w-[100%] h-[100%] bg-transparent z-[-1] opacity-0
+            transition-all ease-in-out duration-[.3s];
+        }
+
+        svg {
+            @apply text-[20px];
+        }
+
+        input {
+            @apply bg-transparent outline-none px-0 w-0 
+            transition-all ease-in-out duration-[.3s];
+        }
+    }
+
+    .active_back {
+        @apply visible opacity-100;
+    }
+
+    .active_search {
+        
+        &::after {
+            @apply bg-[#e7e5e5] opacity-100 dark:bg-[#262626];
+        }
+
+        input {
+            @apply w-[300px] px-[15px];
+        }
+
+    }
+
+}

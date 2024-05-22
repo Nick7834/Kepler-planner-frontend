@@ -1,0 +1,128 @@
+.taskDetailModal {
+    @apply fixed top-[50%] left-[50%] z-[10000] 
+    w-[100%] h-[100vh] invisible opacity-0
+    flex flex-col justify-center items-center
+    transition-all duration-[.3s] ease-in-out;
+
+    transform: translate(-50%, -50%);
+    background-color: rgba(35, 35, 35, 0.5);
+
+    @media (max-width: 1000px) {
+        @apply px-[15px];
+    }
+
+    .taskModal {
+        @apply fixed z-[12000] bg-white dark:bg-[#2a292b]
+        py-[20px] px-[30px] rounded-[12px] max-w-[600px] w-[100%] h-[500px]
+        border-solid border-[1px] border-[#dfdfdf] dark:border-[#403f41]
+        translate-y-[-50px] invisible opacity-0
+        transition-all duration-[.5s] ease-in-out overflow-auto;
+
+        @media (max-width: 1000px) {
+            @apply px-[15px] w-fit h-[380px];
+        }
+
+        @media (max-width: 400px) {
+            max-width: clamp(18.75rem, calc(-56.25rem + 375vw), 37.5rem);
+        }
+
+
+        &::-webkit-scrollbar {
+            @apply w-[4px];
+        }
+
+        &::-webkit-scrollbar-track {
+            @apply bg-transparent; 
+        }
+
+        &::-webkit-scrollbar-thumb {
+            @apply bg-[#B5B5B5] rounded-[12px];
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            @apply bg-[#dbdbdb];
+        }
+    }
+
+    .top {
+        @apply flex items-center justify-between;
+    }
+
+    .map {
+        @apply flex items-center gap-[7px];
+
+            span {
+                @apply text-[14px] text-[#292929] dark:text-white;
+            }
+    }
+
+    textarea {
+        @apply resize-none w-[100%] outline-none bg-transparent mt-[20px] text-[#292929] text-[30px] font-bold dark:text-white;
+    }
+
+    .right {
+       @apply flex items-center gap-[12px];
+
+        button {
+
+           svg {
+            @apply text-[20px];
+           }
+
+            &:last-child {
+                svg {
+                    @apply text-[27px];
+                }
+            }
+
+        }
+
+    }
+
+    .todayTask {
+        @apply text-[#00B2FF];
+     }
+
+     .checkActive {
+        @apply text-[#00B2FF] bg-white rounded-full;
+     }
+
+    .categories {
+        @apply mt-[10px] flex items-center gap-[10px];
+ 
+         button {
+             @apply py-[5px] px-[10px] flex items-center gap-[10px] text-[14px] font-bold
+             rounded-[20px] bg-[#dad8d8] dark:bg-stone-950 dark:text-white;
+ 
+                 svg {
+                     @apply text-[16px];
+                 }
+         }
+     }
+
+    &.openModal {
+        @apply visible opacity-100;
+    }
+
+    .openModal {
+        @apply visible opacity-100 translate-y-0;
+    }
+
+    .doneTaskModal {
+        .map {
+            @apply opacity-50;
+        }
+        .right {
+            @apply opacity-70;
+        }
+
+        textarea {
+            @apply opacity-50;
+        }
+
+        .categories {
+            @apply opacity-50;
+        }
+    }
+
+}

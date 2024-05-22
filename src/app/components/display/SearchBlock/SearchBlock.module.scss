@@ -1,0 +1,28 @@
+.search_block {
+    @apply fixed top-[70px] right-[55px] z-[5010] w-[300px] p-[10px] rounded-[20px] bg-[#e7e5e5] dark:bg-[#262626]
+    transition-all ease-in-out duration-[.3s] max-h-[400px] overflow-auto;
+
+    &::-webkit-scrollbar {
+        @apply w-[4px];
+    }
+
+    &::-webkit-scrollbar-track {
+        @apply bg-transparent; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @apply bg-[#B5B5B5] rounded-[12px];
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        @apply bg-[#dbdbdb];
+    }
+}
+
+.no_search {
+    @apply w-[100%] h-[100%] py-[30px] flex flex-col justify-center items-center;
+
+    p {
+        @apply text-[14px] text-center font-medium text-[#232323] dark:text-white;
+    }
+}

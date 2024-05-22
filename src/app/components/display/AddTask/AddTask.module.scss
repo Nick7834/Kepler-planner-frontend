@@ -1,0 +1,34 @@
+.add_task {
+    @apply block mt-auto cursor-text px-[25px] py-[12px] relative max-w-[650px] w-[100%] border-[2px] border-solid border-[#292929] rounded-[12px] dark:border-white;
+    
+    textarea {
+         @apply block overflow-hidden resize-none w-[98%] h-[25px] outline-none border-0 bg-transparent
+         text-[#292929] text-base font-medium dark:text-white;
+
+        &::placeholder {
+            @apply text-[#292929] text-base font-medium dark:text-white;
+        }
+    }
+
+    &:focus-within {
+        @apply border-[#00B2FF];
+
+        .button {
+            @apply visible opacity-100;
+        }
+    }
+
+    button {
+        @apply invisible opacity-0 px-[15px] absolute top-0 right-0 h-[100%] flex items-center justify-center;
+
+            svg {
+                @apply text-[24px] transition-all duration-[.3s] ease-in-out;
+            }
+
+            &:hover {
+                svg {
+                    @apply text-[#00B2FF]
+                }
+            }
+    }
+}

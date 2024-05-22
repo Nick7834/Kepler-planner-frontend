@@ -1,0 +1,52 @@
+.folders_list {
+    @apply px-[15px] pt-[100px] pb-[50px];
+
+    h1 {
+        @apply grid text-zinc-900 font-bold text-[20px] items-center justify-center dark:text-white;
+        grid-template-columns: repeat(3, 160px);
+
+        @media (max-width: 540px) {
+            grid-template-columns: repeat(2, 160px);
+        }
+
+        @media (max-width: 400px) {
+            @apply flex flex-col;
+        }
+    }
+
+    .folders {
+        @apply mt-[20px] grid justify-center items-center;
+    
+        grid-template-columns: repeat(3, 160px);
+        gap: 10px;
+    
+        @media (max-width: 540px) {
+            grid-template-columns: repeat(2, 160px);
+        }
+    
+        @media (max-width: 400px) {
+            @apply flex flex-col;
+        }
+    
+        button {
+            @apply flex items-center justify-center w-[160px] border-[1px] border-solid py-[30px] rounded-[12px] h-full;
+            background-color: rgba(88, 88, 88, 0.3);
+            svg {
+                @apply text-[20px];
+            }
+        }
+    
+        a {
+            @apply relative flex items-center justify-center w-[160px] border-[1px] border-solid py-[30px] rounded-[12px] h-full text-center;
+            background-color: rgba(88, 88, 88, 0.3);
+            word-break: break-word;
+    
+                span {
+                    @apply absolute top-[5px] right-[5px] flex items-center justify-center text-zinc-900 text-[12px] font-bold
+                    w-[20px] h-[20px] bg-white rounded-full;
+                }
+        }
+    
+    }
+
+}

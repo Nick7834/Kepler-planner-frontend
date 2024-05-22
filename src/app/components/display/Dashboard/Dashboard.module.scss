@@ -1,0 +1,41 @@
+.dashboard {
+    @apply fixed top-0 left-[-120px] py-[25px] flex flex-col gap-[30px] bg-[#e7e5e5] w-[240px] h-[100vh]
+    opacity-0 transition-all duration-[.3s] ease-in-out z-[5000] dark:bg-[#1A1A1A];
+
+    @media (max-width: 1000px) {
+        @apply hidden;
+    }
+
+    .pin {
+        @apply p-[20px] absolute top-0 right-0 text-[20px];
+    }
+
+    &.active_dashboard {
+        @apply left-0 opacity-100;
+    }
+
+    .active_color {
+        @apply text-[#00B2FF];
+    }
+
+    .main {
+        @apply overflow-auto;
+
+        &::-webkit-scrollbar {
+            @apply w-[7px];
+        }
+      
+        &::-webkit-scrollbar-track {
+            @apply bg-transparent; 
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            @apply bg-[#B5B5B5] rounded-[12px];
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            @apply bg-[#dbdbdb];
+        }
+    }
+
+}

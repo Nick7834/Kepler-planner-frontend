@@ -1,0 +1,53 @@
+.dates {
+    @apply flex items-center gap-[40px];
+
+    @media (max-width: 1000px) {
+        @apply flex-col gap-[5px];
+    }
+
+        .days {
+            @apply text-center;
+
+            @media (max-width: 1000px) {
+                @apply flex items-center justify-center gap-[20px];
+            }
+
+            h2 {
+                @apply text-[#292929] text-[40px] font-bold leading-[40px] font-['Ubuntu'] dark:text-white;
+
+                @media (max-width: 1000px) {
+                    font-size: clamp(1.875rem, calc(1.581rem + 1.47vw), 2.5rem);
+                }
+            }
+           
+            span {
+                @apply text-zinc-400 text-base font-['Ubuntu'];
+
+                    &:first-child {
+                        @apply font-bold uppercase;
+                    }
+            }
+
+        }
+
+        .text {
+            h1 {
+                @apply capitalize text-[#292929] text-[40px] font-bold font-['Ubuntu'] dark:text-white;
+
+                @media (max-width: 1000px) {
+                    font-size: clamp(1.875rem, calc(1.581rem + 1.47vw), 2.5rem);
+                    text-align: center;
+                }
+            }
+
+            p {
+                @apply text-zinc-400 text-xl font-bold font-['Inter'];
+
+                @media (max-width: 1000px) {
+                    font-size: clamp(0.875rem, calc(0.699rem + 0.88vw), 1.25rem);
+                    text-align: center;
+                }
+            }
+        }
+
+}

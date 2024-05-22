@@ -1,0 +1,64 @@
+.taskOne {
+    @apply w-[100%] px-[20px] gap-[10px] py-[15px] flex items-center justify-between rounded-[20px] cursor-pointer;
+
+    &:hover {
+        @apply bg-[#f2f2f2] dark:bg-[#292929];
+    }
+
+    h4 {
+        @apply select-none w-[100%] text-[#292929] text-base font-bold dark:text-white;
+    }
+
+    .left {
+       @apply flex items-center gap-[12px];
+    }
+
+    .label {
+        @apply block cursor-pointer;
+    }
+
+    .original {
+        @apply hidden;
+
+            &:checked {
+               + .check {
+                    &::after {
+                        @apply bg-[#9b9b9b];
+                    }
+
+                    svg {
+                        @apply visible opacity-100;
+                    }
+                } 
+            }
+    }
+
+    .check {
+        @apply flex items-center justify-center relative border-[1px] border-[#d4d4d4] border-solid rounded-full
+        min-w-[20px] min-h-[20px] z-[2] overflow-hidden;
+
+            svg {
+                @apply absolute invisible opacity-0 z-[100] text-[#F7F7F7];
+            }
+
+            &::after {
+                @apply content-[''] absolute w-[100%] h-[100%] z-[-1] opacity-50;
+            }
+    }
+
+    .points {
+        @apply flex flex-col gap-[3px];
+        span {
+            @apply min-w-[4px] min-h-[4px] bg-[#292929] rounded-full dark:bg-zinc-300;
+        }
+    }   
+
+    &.doneTask {
+        @apply opacity-50 line-through;
+    }
+
+   &.activeTask {
+        @apply bg-[#f2f2f2] dark:bg-[#393939];
+    } 
+
+}

@@ -1,0 +1,25 @@
+.profile {
+    @apply px-[25px];
+
+    @media (max-width: 1000px) {
+        @apply px-0;
+    }
+
+    .button {
+        @apply flex items-center gap-[20px];
+
+            span {
+                @apply w-[40px] h-[40px] rounded-full bg-[#B3B3B3];
+            }
+
+            p {
+               @apply capitalize text-base font-medium font-['Ubuntu'] text-[#292929] dark:text-white; 
+               word-break: break-word;
+            }
+
+            img {
+                @apply object-cover overflow-hidden rounded-full min-w-[40px] h-[40px];
+            }
+    }
+
+}
