@@ -6,8 +6,8 @@ import { ProviderMain } from "@/redux/Provider";
 import MainComponents from "./MainComponents";
 
 export const metadata: Metadata = {
-  title: "Kepler Planer",
-  description: "Kepler Planer",
+  title: "Kepler Planner",
+  description: "Kepler Planner",
 };
 
 export default function RootLayout({
