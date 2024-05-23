@@ -26,7 +26,7 @@ export const Profile = () => {
             {!user?.avatarUrl.length ? 
                 <span></span>
                 :
-                <Image src={user.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL}${user.avatarUrl}`} width={40} height={40} alt='avatar'></Image>
+                <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL}${user?.avatarUrl}`} width={40} height={40} alt='avatar'></Image>
             }
             <p>{user?.fullName}</p>
         </button>

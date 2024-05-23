@@ -165,8 +165,12 @@
             }
 
             label {
-                @apply cursor-pointer relative block w-[70px] h-[70px] rounded-full bg-black  overflow-hidden
+                @apply cursor-pointer relative block w-[70px] h-[70px] rounded-full bg-black overflow-hidden
                 bg-cover bg-no-repeat transition duration-[.3s] ease-in-out;
+
+                img {
+                    @apply w-[100%] h-[100%] object-cover;
+                }
 
                 &:after {
                     @apply content-[''] absolute top-[50%] left-[50%] w-[50px] h-[50px] bg-contain bg-no-repeat
