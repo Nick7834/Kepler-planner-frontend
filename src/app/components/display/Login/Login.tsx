@@ -197,8 +197,8 @@ export const Login = () => {
                               message: 'Password must be at least 8 characters long'
                             },
                             pattern: {
-                              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                              message: 'Include upper, lower, number, and special char'
+                              value: /^(?=.*[A-Z])(?=.*\d)[A-Z\d]+$/i,
+                              message: 'Password must contain at least one uppercase letter and one number'
                             }
                           })} 
                         />
