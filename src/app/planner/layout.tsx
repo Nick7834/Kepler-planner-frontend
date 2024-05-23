@@ -55,7 +55,7 @@ export default function RootPlaner({
 
               <div className='app'>
                 {pageName !== '/planner/myday' ? 
-                <div className='background' style={{backgroundImage: user?.backgroundImage && `url(${process.env.REACT_APP_API_URL}${user?.backgroundImage})`}}></div> :
+                <div className='background' style={{backgroundImage: user?.backgroundImage && `url(${process.env.NEXT_PUBLIC_API_URL}${user?.backgroundImage})`}}></div> :
                 <div className='background_color'></div>}
 
                 <Dashboard />
