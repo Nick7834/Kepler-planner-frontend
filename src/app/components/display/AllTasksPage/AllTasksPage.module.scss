@@ -1,12 +1,12 @@
 .allTaks {
-    @apply h-[100vh] flex flex-col justify-center items-center transition-all duration-[.2s] ease-in-out;
+    @apply h-[100vh] w-full flex flex-col justify-center items-center transition-all duration-[.2s] ease-in-out;
 
     @media (max-width: 1000px) {
         @apply h-full px-[15px] pt-[70px] pb-[50px];
     }
     
         .folder_main {
-            @apply h-[100vh] flex flex-col justify-center items-center;
+            @apply h-[100vh] w-full flex flex-col justify-center items-center;
 
             @media (max-width: 1000px) {
                 @apply h-full;

@@ -32,20 +32,15 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
 
     const [backList, setBackList] = useState([]);
 
-    useEffect(() => {
-      if (user) {
-          const backGet = async () => {
-              try {
-                  const resp = await instance.get('/backgrounds');
-                  setBackList(resp.data);
-              } catch(err) {
-                  console.error('Ошибка:', err);
-              }
-          };
-          backGet();
+    const getFetchBackground = async () => {
+        try {
+          const resp = await instance.get('/backgrounds');
+          setBackList(resp.data);
+        } catch(err) {
+          console.error('Ошибка:', err);
       }
-    }, [user]);
-
+    }
+    
     const handBack = async (back: string) => {
 
       const updateBack = {
@@ -151,7 +146,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
 
         <div className={styles.buttons}>
             <button onClick={() => setTabs(1)}>My profile</button>
-            <button onClick={() => setTabs(2)}>Background</button>
+            <button onClick={() => {setTabs(2), getFetchBackground()}}>Background</button>
             <button onClick={() => setTabs(3)}>Theme</button>
             <a target='_blank' href="https://github.com/Nick7834">GitHub</a>
             <button onClick={Exit}>Exit</button>
@@ -168,7 +163,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
                     <div className={styles.avatar}>
                         <input type="file" id='file' onChange={handAvatar} />
                         <label htmlFor='file'>
-                            <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL}${user?.avatarUrl}`} width={70} height={70} alt='avatar'></Image>
+                            <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.avatarUrl}`} width={70} height={70} alt='avatar'></Image>
                         </label>
                     </div>
                     <span className={styles.fullName}>{user?.fullName}</span>
@@ -183,7 +178,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
 
                 <div className={styles.cards}>
                     {backList && backList.map((el, index) => (
-                      <div key={index} className={`${styles.card} ${el === user?.backgroundImage ? `${styles.activeBack}` : ''}`} onClick={() => handBack(el)}><Image src={`${process.env.NEXT_PUBLIC_API_URL}${el}`} width={209} height={100} alt='img'></Image></div>
+                      <div key={index} className={`${styles.card} ${el === user?.backgroundImage ? `${styles.activeBack}` : ''}`} onClick={() => handBack(el)}><Image src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${el}`} width={209} height={100} alt='img'></Image></div>
                     ))}
                 </div>
             </div>

@@ -46,7 +46,6 @@ export default function Page() {
     e.preventDefault();
 
     try {
-
         const response = await instance.post('/tasks/today', { title: newTask });
         const newTasks = response.data;
         dispatch(addNewTaskTodays(newTasks))

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { 
-    pin: false,
+    pin: true,
     mousePin: false,
     openRandom: false,
     openFolder: false

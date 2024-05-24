@@ -4,7 +4,7 @@
     transition-all ease-in-out duration-[.3s] text-[#292929] dark:text-white dark:bg-zinc-900 dark:border-white;
 
     @media (max-width: 1000px) {
-        @apply left-0 z-[5030] top-0 h-[100%] pt-[50px] rounded-none;
+        @apply left-0 z-[5030] top-0 min-w-full h-[100%] pt-[50px] rounded-none;
     }
 
     .close_mob {
@@ -101,7 +101,7 @@
 .background {
 
     h2 {
-        @apply pt-[5px] pr-[10px] flex items-center justify-center text-[20px] font-bold;  
+        @apply py-[5px] pr-[10px] flex items-center justify-center text-[20px] font-bold;  
     }
 
     .cards {

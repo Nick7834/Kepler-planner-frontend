@@ -6,21 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 
 export const Days = () => {
+
     const [greeting, setGreeting] = useState('');
+    const [randSloganDay, setRandSloganDay] = useState('');
+    const [currentDate, setCurrentDate] = useState<Date | null>(null);
     
     const user = useSelector((state: RootState) => state.auth.data) as any; 
 
-    const currentDate = new Date();
-
-    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-    const day = daysOfWeek[currentDate.getDay()];
-    const month = months[currentDate.getMonth()];
-    const date = currentDate.getDate();
-
     useEffect(() => {
         const currentGreeting = new Date();
+        setCurrentDate(currentGreeting);
+
         const greetingText = currentGreeting.getHours();
 
         if (greetingText < 6) {
@@ -34,8 +30,8 @@ export const Days = () => {
         }
     }, []);
 
-    const [randSloganDay, setRandSloganDay] = useState('');
-
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const slogans = [
         "Plan your way to success, one task at a time!",
         "Empower your day with organized goals!",
@@ -60,6 +56,14 @@ export const Days = () => {
             randomSlogan();
         }
     }, []);
+
+    if (!currentDate) {
+        return null;
+    }
+
+    const day = daysOfWeek[currentDate.getDay()];
+    const month = months[currentDate.getMonth()];
+    const date = currentDate.getDate();
 
   return (
     <div className={styles.dates}>

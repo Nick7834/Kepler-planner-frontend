@@ -1,5 +1,5 @@
 .all {
-    @apply relative py-[20px] pb-[65px]  max-w-[550px] w-[100%] h-[535px] bg-[#e7e5e5] rounded-xl overflow-hidden dark:bg-zinc-900;
+    @apply relative py-[20px] pb-[65px] max-w-[550px] w-[100%] h-[535px] bg-[#e7e5e5] rounded-xl overflow-hidden dark:bg-zinc-900;
 
     .tasks {
         @apply h-[100%] overflow-auto;
