@@ -6,7 +6,7 @@ import { TaskSection } from '@/app/components/display/TaskSection/TaskSection';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { useState, useEffect, useMemo } from 'react';
-import { addNewTaskTodays, deleteTask, foldersAll, taskToday } from '@/redux/slices/tasks';
+import { addNewTaskTodays, deleteTask, foldersAll, taskToday, updateTask } from '@/redux/slices/tasks';
 import instance from '@/service';
 import { Loader } from '@/app/components/display/Loader/Loader';
 import { motion } from "framer-motion"
@@ -45,14 +45,17 @@ export default function Page() {
   const handleAddTaskToday = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const optimisticTask = { title: newTask, _id: String(Date.now()), pin: false, done: false, folder: 'Personal' }; 
+    dispatch(addNewTaskTodays(optimisticTask));
+    setNewTask('');
+
     try {
         const response = await instance.post('/tasks/today', { title: newTask });
         const newTasks = response.data;
-        dispatch(addNewTaskTodays(newTasks))
+        await dispatch(taskToday())
+        // await dispatch(updateTask({taskId: optimisticTask._id, updatedTask: newTasks}));
         await dispatch(foldersAll());
         setIsLoader(false)
-
-        setNewTask('');
     } catch (error) {
       console.error('An error occurred when creating the task!:', error)
     }
