@@ -45,15 +45,11 @@ export default function Page() {
   const handleAddTaskToday = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const optimisticTask = { title: newTask, _id: String(Date.now()), pin: false, done: false, folder: 'Personal' }; 
-    dispatch(addNewTaskTodays(optimisticTask));
-    setNewTask('');
-
     try {
+        setNewTask('');
         const response = await instance.post('/tasks/today', { title: newTask });
         const newTasks = response.data;
-        await dispatch(taskToday())
-        // await dispatch(updateTask({taskId: optimisticTask._id, updatedTask: newTasks}));
+        dispatch(addNewTaskTodays(newTasks))
         await dispatch(foldersAll());
         setIsLoader(false)
     } catch (error) {
