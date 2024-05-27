@@ -74,7 +74,7 @@
     transition-all duration-[.2s] ease-in-out;
 
     @media (max-width: 1000px) {
-        @apply pt-[80px] pb-[20px] px-[15px] min-h-[92vh] h-[92vh];
+        @apply pt-[80px] pb-[20px] px-[15px] min-h-[92dvh] h-[92dvh];
     }
 }
 
