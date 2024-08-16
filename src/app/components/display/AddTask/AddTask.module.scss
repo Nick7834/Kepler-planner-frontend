@@ -1,12 +1,13 @@
 .add_task {
-    @apply block mt-auto cursor-text px-[25px] py-[12px] relative max-w-[650px] w-[100%] border-[2px] border-solid border-[#292929] rounded-[12px] dark:border-white;
+    @apply block mt-auto cursor-text px-[25px] py-[12px] relative max-w-[650px] w-[100%] border-[2px] border-solid rounded-[12px] border-white
+    backdrop-blur bg-[rgb(231,229,229,0.2)] dark:bg-[rgba(26,26,26,0.2)];
     
     textarea {
          @apply block overflow-hidden resize-none w-[98%] h-[25px] outline-none border-0 bg-transparent
-         text-[#292929] text-base font-medium dark:text-white;
+         text-base font-medium text-white;
 
         &::placeholder {
-            @apply text-[#292929] text-base font-medium dark:text-white;
+            @apply text-base font-medium text-white;
         }
     }
 
@@ -22,7 +23,7 @@
         @apply invisible opacity-0 px-[15px] absolute top-0 right-0 h-[100%] flex items-center justify-center;
 
             svg {
-                @apply text-[24px] transition-all duration-[.3s] ease-in-out;
+                @apply text-[24px] transition-all duration-[.3s] ease-in-out text-white;
             }
 
             &:hover {

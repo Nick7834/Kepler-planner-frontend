@@ -1,11 +1,10 @@
 .task {
     @apply relative px-[20px] py-[15px] flex items-center 
-    max-w-[650px] w-[100%] bg-[#e7e5e5] rounded-[12px] dark:bg-[#232323]
-    cursor-pointer  border-solid border-[2px] border-transparent;
-    // animation: task .3s linear;
+    max-w-[650px] w-[100%] rounded-[12px] backdrop-blur bg-[rgb(231,229,229,0.6)] 
+    dark:bg-[rgba(26,26,26,0.6)] cursor-pointer border-solid border-[2px] border-[#292929] dark:border-[#ababab] gap-3;
 
     .task_text {
-        @apply flex w-[100%] items-center gap-[15px];
+        @apply flex w-[100%] items-center gap-[15px] overflow-hidden;
         
         p {
             @apply select-none w-[100%] text-[#232323] text-base font-bold dark:text-white;
@@ -25,14 +24,14 @@
     }
 
     .map {
-        @apply relative w-fit flex items-center gap-[7px];
+        @apply relative w-fit flex items-center gap-[7px] overflow-hidden whitespace-nowrap;
     
             span {
                 @apply text-[12px] text-[#292929] dark:text-white;
             }
 
             svg {
-                @apply text-[12px];
+                @apply text-[12px] min-w-[12px];
             }
 
             &::after {
@@ -74,8 +73,8 @@
     }
 
     .check {
-        @apply flex items-center justify-center relative border-[1px] border-[#d4d4d4] border-solid rounded-full
-        min-w-[20px] min-h-[20px] z-[2] overflow-hidden;
+        @apply flex items-center justify-center relative border-[1px] border-solid rounded-full
+        min-w-[20px] min-h-[20px] z-[2] overflow-hidden dark:border-[#dfdfdf] border-[#403f41];
 
             svg {
                 @apply absolute invisible opacity-0 z-[100] text-[#F7F7F7];
@@ -96,7 +95,8 @@
     
 
     &.doneTask {
-        @apply bg-transparent border-solid border-[2px] border-[#e7e5e5] dark:border-[#232323];
+        @apply border-solid border-[2px] backdrop-blur border-[#232323] dark:border-[#5b5b5b]
+        bg-[rgb(231,229,229,0.3)] dark:bg-[rgba(26,26,26,0.3)];
 
         p {
             @apply opacity-50 line-through;

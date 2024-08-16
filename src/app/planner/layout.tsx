@@ -18,15 +18,14 @@ import { SearchBlock } from '../components/display/SearchBlock/SearchBlock';
 import { MobMenu } from '../components/ul/MobMenu/MobMenu';
 import { setOpenFolder } from '@/redux/slices/pin';
 import { Profile } from '../components/display/Profile/Profile';
-
+import { SearchBackgroundMain } from '../components/display/SearchBackgroundMain/SearchBackgroundMain';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function RootPlaner({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
-  const pageName = usePathname();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -54,9 +53,12 @@ export default function RootPlaner({
             <ConfirmProvider>
 
               <div className='app'>
-                {pageName !== '/planner/myday' ? 
-                <div className='background' style={{backgroundImage: user?.backgroundImage && `url(${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.backgroundImage})`}}></div> :
-                <div className='background_color'></div>}
+
+                <div className='background' 
+                style={{backgroundImage: user?.backgroundImage && 
+                `url(${user?.backgroundImage.startsWith('/backgrounds/') ? 
+                `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.backgroundImage}` 
+                : `${user?.backgroundImage}.jpg`})`}}></div>
 
                 <Dashboard />
 
@@ -73,9 +75,25 @@ export default function RootPlaner({
                 <div className="main__top-p">
                   <Profile />
                 </div>
+
                 <SearchBlock />
 
                 <MobMenu />
+
+                <SearchBackgroundMain />
+
+                <ToastContainer
+                  position="top-right"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="dark"
+                />
 
               </div>
 
@@ -84,6 +102,7 @@ export default function RootPlaner({
         </FolderProvider>
           
       </Providers>
+
     </div>
   );
 }

@@ -5,12 +5,14 @@ import { Days } from '@/app/components/display/Days/Days';
 import { TaskSection } from '@/app/components/display/TaskSection/TaskSection';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useOptimistic } from 'react';
 import { addNewTaskTodays, deleteTask, foldersAll, taskToday, updateTask } from '@/redux/slices/tasks';
 import instance from '@/service';
 import { Loader } from '@/app/components/display/Loader/Loader';
 import { motion } from "framer-motion"
-
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { startTransition } from 'react';
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -54,6 +56,16 @@ export default function Page() {
         setIsLoader(false)
     } catch (error) {
       console.error('An error occurred when creating the task!:', error)
+      toast.error('An error occurred when creating the task!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
 
   }

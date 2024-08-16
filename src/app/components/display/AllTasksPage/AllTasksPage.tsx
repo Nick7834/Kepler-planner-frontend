@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styles from './AllTasksPage.module.scss'
 import { AllTaskDay } from '../AllTaskDay/AllTaskDay'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,13 +19,15 @@ export const AllTasksPage = () => {
 
   const [isLoader, setIsLoader] = useState(true);
 
-  useEffect(() => {
-      if (tasks.status === 'loading' && !tasksItems.length) {
-          dispatch(fetchTasks());
-      } else {
-          setIsLoader(false);
-      }
-  }, [dispatch, tasks]);
+  const memoizedTasksItems = useMemo(() => tasksItems, [tasksItems]);
+
+    useEffect(() => {
+        if (tasks.status === 'loading' && !memoizedTasksItems.length) {
+            dispatch(fetchTasks());
+        } else {
+            setIsLoader(false);
+        }
+    }, [dispatch, tasks, memoizedTasksItems]);
 
   return (
     <div className={`${styles.allTaks} ${isPinned || isMouse ? 'active_left' : ''}`}>
@@ -36,10 +38,10 @@ export const AllTasksPage = () => {
 
               {isLoader && <Loader />}
 
-             <AllTaskDay taskInfo={tasksItems} />
+             <AllTaskDay taskInfo={memoizedTasksItems} />
 
-             {tasksItems?.length > 0 && (
-                <TaskAllDetail taskDefault={tasksItems}  />
+             {memoizedTasksItems?.length > 0 && (
+                <TaskAllDetail taskDefault={memoizedTasksItems}  />
               )}
           </div>
 

@@ -45,9 +45,9 @@ export const DayCard = () => {
     }
 
     try {
+      setNewTaskSeven('');
       await dispatch(addTaskToDay({ dayIndex: indexDay, newTask: addTaskWeeks }));
       await dispatch(foldersAll());
-      setNewTaskSeven('');
     } catch (error) {
       console.error('An error occurred when creating the task!:', error)
     }
@@ -84,11 +84,13 @@ export const DayCard = () => {
               </div>
      
             
-             <AddTask 
+            <div className={styles.add}>
+              <AddTask 
                 value={newTaskSeven[el.dayOfWeek] || ''} 
                 onChange={(value) => handleInputChange(el.dayOfWeek, value)} 
                 onAddTask={(e) => handleAddTask(e, el.dayOfWeek, el.dayIndex)} 
               />
+            </div>
      
          </div>
         ))}

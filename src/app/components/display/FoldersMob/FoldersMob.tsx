@@ -45,26 +45,28 @@ export const FoldersMob = () => {
 
 
   return (
-    <div className={styles.folders_list}>
+   <>
+        <div className='absolute -z-[1] top-0 left-0 w-full backdrop-blur-sm h-[100vh]'></div>
+        {items.length === 0 && <Loader />}
+        <div className={styles.folders_list}>
 
-        <h1>My Lists</h1>   
+            <h1>My Lists</h1>   
 
-        <div className={styles.folders}>
+            <div className={styles.folders}>
 
-            {items.length === 0 && <Loader />}
+                {items.map((folder: any, index: number) => (
+                    <Link key={index} href={`/planner/folder/${folder?._id}`}>
+                        {folder?.name.length >= 20 ? `${folder?.name.substring(0, 15).trim()}...` : folder?.name.trim()}
+                        {folder?.tasks.filter((task: any) => !task.done).length !== 0 && 
+                        <span>{folder?.tasks.filter((task: any) => !task.done).length < 99 ? folder?.tasks.filter((task: any) => !task.done).length : '99+'}</span>}
+                    </Link>
+                ))}
 
-            {items.map((folder: any, index: number) => (
-                <Link key={index} href={`/planner/folder/${folder?._id}`}>
-                    {folder?.name.length >= 20 ? `${folder?.name.substring(0, 15).trim()}...` : folder?.name.trim()}
-                    {folder?.tasks.filter((task: any) => !task.done).length !== 0 && 
-                    <span>{folder?.tasks.filter((task: any) => !task.done).length < 99 ? folder?.tasks.filter((task: any) => !task.done).length : '99+'}</span>}
-                </Link>
-            ))}
+                <button onClick={() => dispatch(setOpenFolder(true))}><IoAdd /></button>
 
-            <button onClick={() => dispatch(setOpenFolder(true))}><IoAdd /></button>
+            </div>
 
         </div>
-
-    </div>
+   </> 
   )
 }

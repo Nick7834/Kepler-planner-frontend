@@ -20,7 +20,7 @@ const config: Config = {
       },
 
       backgroundColor: {
-        "task": "rgba(26, 26, 26, 0.8)",
+        "task": "rgba(26, 26, 26, 0.6)",
         "task-l": "rgba(219, 218, 218, 0.8)",
       },
 

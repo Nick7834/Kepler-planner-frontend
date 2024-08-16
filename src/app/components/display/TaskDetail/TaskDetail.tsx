@@ -24,7 +24,7 @@ interface TaskData {
   pin: boolean;
 }
 
-export const TaskDetail = ({taskDefault, folderId}: any) => {
+export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
 
   const { selectedTaskId, setSelectedTaskId, modalOpenTask } = useTaskContext();
 
@@ -46,6 +46,7 @@ export const TaskDetail = ({taskDefault, folderId}: any) => {
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
+
   const inputHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = '25px';
@@ -64,7 +65,6 @@ export const TaskDetail = ({taskDefault, folderId}: any) => {
     setSelectedTaskId(null);
   }, [data, folderId]);
 
-
   useEffect(() => {
     if (taskCheck && taskIdSatate) {
       const selectedTask = taskDefault?.tasks.find((task: any) => task._id === taskIdSatate);
@@ -75,7 +75,7 @@ export const TaskDetail = ({taskDefault, folderId}: any) => {
         return; 
       }
     }
-
+    
     if (taskDefault && taskDefault?.tasks.length > 0) {
       if (!data || !taskDefault?.tasks.find((task: any) => task?._id === data?._id)) {
         const filterTaskOne = taskDefault?.tasks.filter((task: any) => !task?.done);
@@ -113,7 +113,29 @@ export const TaskDetail = ({taskDefault, folderId}: any) => {
   
       taskDetailNow();
     }
-  }, [selectedTaskId, folderId]);
+  }, [taskDefault, folderName, selectedTaskId, folderId]);
+
+    useEffect(() => {
+    const taskDetailNow = async () => {
+      const currentTask = taskDefault?.tasks.find((task: any) => task?._id === data?._id);
+
+   
+      if (currentTask && data && folderName === currentTask.folder) {
+        return;
+      }
+
+      if (currentTask) {
+        try {
+          const res = await instance.get(`/tasks/${currentTask?._id}`);
+          setData(res?.data);
+        } catch(err) {
+          console.error('Error', err);
+        }
+      }
+    }
+
+    taskDetailNow();
+  }, [taskDefault, folderName, data])
   
 
   useEffect(() => {
@@ -263,19 +285,21 @@ export const TaskDetail = ({taskDefault, folderId}: any) => {
                 </div> 
             </div>
 
+          <div className={styles.scrolls}>
             <textarea
-              ref={textareaRef}
-              maxLength={1000}
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-              onBlur={() => patchTask(data?._id)}
-              onInput={inputHeight}
-              onKeyDown={handleKeyDown}
-            ></textarea>
+                ref={textareaRef}
+                maxLength={1000}
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                onBlur={() => patchTask(data?._id)}
+                onInput={inputHeight}
+                onKeyDown={handleKeyDown}
+              ></textarea>
 
-            <div className={styles.categories}>
-                 <button><FaFolder />{data?.folder}</button>
-            </div>
+              <div className={styles.categories}>
+                  <button><FaFolder />{data?.folder}</button>
+              </div>
+          </div>
 
     </div>
   )

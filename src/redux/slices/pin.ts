@@ -4,7 +4,8 @@ const initialState = {
     pin: true,
     mousePin: false,
     openRandom: false,
-    openFolder: false
+    openFolder: false,
+    openBack: false
 };
 
 const pinSlice = createSlice({
@@ -34,8 +35,11 @@ const pinSlice = createSlice({
         setOpenFolder: (state, action) => {
             state.openFolder = action.payload;
         },
+        setOpenBack: (state, action) => {
+            state.openBack = action.payload;
+        },
     }
 });
 
-export const { setPin, setMousePin, initializePin, setOpenRandom, setOpenFolder } = pinSlice.actions;
+export const { setPin, setMousePin, initializePin, setOpenRandom, setOpenFolder, setOpenBack } = pinSlice.actions;
 export const PinReducer = pinSlice.reducer;

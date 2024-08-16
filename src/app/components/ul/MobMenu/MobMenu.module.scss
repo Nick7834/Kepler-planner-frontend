@@ -7,7 +7,8 @@
 
     .menu {
         @apply flex items-center justify-between gap-[5px] m-[10px]
-        py-[10px] px-[15px] rounded-[20px] bg-[#e7e5e5] dark:bg-[#212121];
+        py-[10px] px-[15px] rounded-[20px] bg-[rgb(231,229,229,0.6)] dark:bg-[rgba(26,26,26,0.6)]
+        backdrop-blur;
     }
 
     a {

@@ -10,7 +10,7 @@ import { AppDispatch, RootState } from '@/redux/store';
 import { useFolderContext } from '@/app/context/FolderContext';
 import instance from '@/service';
 import { foldersAll } from '@/redux/slices/tasks';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { setOpenFolder } from '@/redux/slices/pin';
 
 export const Folders = () => {
@@ -26,6 +26,7 @@ export const Folders = () => {
     const { items } = foldersSlice;
 
     const pageNameId = usePathname().replace('/planner/folder/', '');
+    const router = useRouter();
 
     useEffect(() => {
         dispatch(foldersAll());
@@ -50,10 +51,12 @@ export const Folders = () => {
 
       const createFolderFetch = async () => {
         try {
-             await instance.post('/folders', { name: folderName });
+            const response = await instance.post('/folders', { name: folderName });
 
             dispatch(foldersAll());
-            setIsLoader(false)
+            setIsLoader(false);
+
+            router.push(`/planner/folder/${response.data._id}`);
         } catch (err) {
             console.warn('Error creating folder', err);
         }

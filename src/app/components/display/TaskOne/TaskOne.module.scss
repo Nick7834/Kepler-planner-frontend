@@ -2,11 +2,12 @@
     @apply w-[100%] px-[20px] gap-[10px] py-[15px] flex items-center justify-between rounded-[20px] cursor-pointer;
 
     &:hover {
-        @apply bg-[#f2f2f2] dark:bg-[#292929];
+        @apply bg-[#f2f2f2] dark:bg-[#3f3f3f];
     }
 
     h4 {
         @apply select-none w-[100%] text-[#292929] text-base font-bold dark:text-white;
+        word-break: break-word;
     }
 
     .left {
@@ -58,7 +59,7 @@
     }
 
    &.activeTask {
-        @apply bg-[#f2f2f2] dark:bg-[#393939];
+        @apply bg-[#f2f2f2] dark:bg-[#494949];
     } 
 
 }

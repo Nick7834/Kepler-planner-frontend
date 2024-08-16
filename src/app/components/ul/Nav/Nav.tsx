@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import styles from './Nav.module.scss'
 
 import { LuCalendarDays } from "react-icons/lu";
@@ -25,11 +25,26 @@ export const Nav = () => {
   
     const namePage = usePathname();
 
-    const navs = [
-        {text: 'My day', svg: <FaRegDotCircle />, link: '/planner/myday', current: incompleteTaskCount > 99 ? '99+' : incompleteTaskCount},
-        {text: 'Next 7 days', svg: <LuCalendarDays />, link: '/planner/next_seven_days', current: selectNextSevenDaysCounts > 99 ? '99+' : selectNextSevenDaysCounts},
-        {text: 'All my tasks', svg: <TbClipboardList />, link: '/planner/all_my_tasks', current: selectAllTaskCount > 99 ? '99+' : selectAllTaskCount}
-    ];
+    const navs = useMemo(() => [
+      { 
+          text: 'My day', 
+          svg: <FaRegDotCircle />, 
+          link: '/planner/myday', 
+          current: incompleteTaskCount > 99 ? '99+' : incompleteTaskCount
+      },
+      { 
+          text: 'Next 7 days', 
+          svg: <LuCalendarDays />, 
+          link: '/planner/next_seven_days', 
+          current: selectNextSevenDaysCounts > 99 ? '99+' : selectNextSevenDaysCounts 
+      },
+      { 
+          text: 'All my tasks', 
+          svg: <TbClipboardList />, 
+          link: '/planner/all_my_tasks', 
+          current: selectAllTaskCount > 99 ? '99+' : selectAllTaskCount 
+      }
+  ], [incompleteTaskCount, selectAllTaskCount, selectNextSevenDaysCounts]);
 
   return (
     <nav className={styles.nav}>

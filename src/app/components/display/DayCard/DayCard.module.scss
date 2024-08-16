@@ -1,5 +1,5 @@
 .all_seven_task {
-    @apply flex items-start gap-[20px] overflow-auto;
+    @apply flex items-start gap-[20px] overflow-auto transition-all duration-[.2s] ease-in-out;
 
     @media (max-width: 1000px) {
         @apply h-full px-[15px] pt-[100px] pb-[50px];
@@ -23,7 +23,7 @@
 }
 
 .task_card {
-    @apply min-w-[300px] w-[100%] bg-task-l rounded-[20px] py-[15px] px-[10px] dark:bg-task; 
+    @apply min-w-[300px] w-[100%] bg-task-l rounded-[20px] py-[15px] px-[10px] dark:bg-task backdrop-blur; 
 
     h3 {
         @apply text-[#292929] text-base font-bold dark:text-white;
@@ -31,6 +31,10 @@
 
     .all_task {
         @apply my-[10px] flex flex-col gap-[10px] max-h-[400px] overflow-auto;
+
+        > div {
+            @apply bg-[rgb(231,229,229,0.2)] dark:bg-[rgba(26,26,26,0.2)];
+        }
 
         &::-webkit-scrollbar {
             @apply w-[7px];
@@ -46,6 +50,32 @@
         
         &::-webkit-scrollbar-thumb:hover {
             @apply bg-[#dbdbdb];
+        }
+    }
+
+    .add {
+        @apply dark:bg-none;
+
+        label {
+            background-color: none !important;
+            backdrop-filter: none !important;
+            @apply border-[#292929] dark:border-white 
+        }
+
+        textarea {
+            @apply text-[#292929] dark:text-white;
+   
+           &::placeholder {
+               @apply text-[#292929] dark:text-white;
+           }
+       }
+
+       button {
+
+            svg {
+                @apply text-[#292929] dark:text-white;
+            }
+
         }
     }
 

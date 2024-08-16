@@ -1,8 +1,8 @@
 .task {
-    @apply cursor-pointer relative px-[20px] py-[25px] flex items-center max-w-[650px] w-[100%] bg-[#d8d5d5] rounded-[12px] dark:bg-[#232323];
+    @apply cursor-pointer relative px-[20px] py-[25px] flex items-center max-w-[650px] w-[100%] rounded-[12px] bg-[rgb(231,229,229,0.6)] dark:bg-[rgba(26,26,26,0.6)] backdrop-blur;
 
     .task_text {
-        @apply flex items-center gap-[15px];
+        @apply flex items-center gap-[15px] overflow-hidden;
         
         span {
             @apply text-[#292929] text-base font-bold dark:text-white;
@@ -30,7 +30,7 @@
     }
 
     .map {
-        @apply relative w-fit flex items-center gap-[7px];
+        @apply relative w-fit flex items-center gap-[7px] overflow-hidden whitespace-nowrap;
     
             span {
                 @apply text-[12px] text-[#292929] dark:text-white;

@@ -9,7 +9,7 @@
     background-color: rgba(35, 35, 35, 0.5);
 
     .modal {
-        @apply fixed z-[12000] bg-white dark:bg-[#2a292b]
+        @apply fixed z-[12000] backdrop-blur-[20px] bg-[rgb(231,229,229,0.8)] dark:bg-[rgba(26,26,26,0.8)]
         py-[20px] px-[30px] rounded-[12px] max-w-[420px] w-[100%] 
         border-solid border-[1px] border-[#dfdfdf] dark:border-[#403f41]
         translate-y-[-50px] translate-y-[-50px] invisible opacity-0

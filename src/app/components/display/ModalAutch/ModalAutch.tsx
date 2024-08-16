@@ -6,12 +6,14 @@ import { useTheme } from 'next-themes'
 import { BsMoonStarsFill } from "react-icons/bs";
 import { HiSun } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { fetchAuthMe, logout, authSlice, updateAvatar, isAuth } from '@/redux/slices/auth';
 import instance from '@/service';
 import Image from 'next/image';
+import { setOpenBack } from '@/redux/slices/pin';
 
 interface openProfile {
     open: Boolean,
@@ -94,6 +96,11 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
       closeModal()
     }
 
+    const handOpenBackSearch = () => {
+      closeModal();
+      dispatch(setOpenBack(true))
+    }
+
     const updateDarkState = (value: boolean) => {
       setDark(value);
       localStorage.setItem('dark', JSON.stringify(value));
@@ -163,7 +170,9 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
                     <div className={styles.avatar}>
                         <input type="file" id='file' onChange={handAvatar} />
                         <label htmlFor='file'>
-                            <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.avatarUrl}`} width={70} height={70} alt='avatar'></Image>
+                            {!user?.avatarUrl.length ? 
+                             <span></span>
+                             :  <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.avatarUrl}`} width={70} height={70} alt='avatar'></Image>}
                         </label>
                     </div>
                     <span className={styles.fullName}>{user?.fullName}</span>
@@ -176,7 +185,13 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
 
                 <h2>Background</h2>
 
+                <button className={styles.open_s} onClick={handOpenBackSearch}><IoSearchOutline /></button>
+
                 <div className={styles.cards}>
+                    {user?.backgroundImage && !user?.backgroundImage.startsWith('/backgrounds/') && 
+                    <div className={`${styles.card} ${user?.backgroundImage ? `${styles.activeBack}` : ''}`}>
+                      <Image src={user?.backgroundImage} width={209} height={100} alt='img'></Image>
+                    </div>}
                     {backList && backList.map((el, index) => (
                       <div key={index} className={`${styles.card} ${el === user?.backgroundImage ? `${styles.activeBack}` : ''}`} onClick={() => handBack(el)}><Image src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${el}`} width={209} height={100} alt='img'></Image></div>
                     ))}

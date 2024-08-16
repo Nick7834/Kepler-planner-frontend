@@ -42,6 +42,8 @@ export const Dashboard = () => {
     onMouseLeave={handleMouseLeave}
     className={`${styles.dashboard} ${isMouse || isPinned ? `${styles.active_dashboard}` : ''}`}>
 
+        <div className={styles.blur}></div>
+
         <button className={`${styles.pin} ${isPinned ? `${styles.active_color}` : ''}`} onClick={togglePin}>
             <RiPushpinLine />
         </button>

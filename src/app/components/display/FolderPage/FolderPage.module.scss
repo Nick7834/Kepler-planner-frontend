@@ -9,7 +9,7 @@
         @apply h-[100vh] flex flex-col justify-center items-center;
 
         @media (max-width: 1000px) {
-            @apply h-full;
+            @apply h-full max-w-[550px] w-full;
         }
     }
 
@@ -26,7 +26,7 @@
     // top
 
     .top {
-        @apply w-fit bg-[#e7e5e5] dark:bg-[#262626] px-[20px] py-[10px] self-start
+        @apply w-fit backdrop-blur-[20px] bg-[rgb(231,229,229,0.8)] dark:bg-[rgba(26,26,26,0.8)] px-[20px] py-[10px] self-start
         flex items-center gap-[15px] rounded-[15px];
 
         input {

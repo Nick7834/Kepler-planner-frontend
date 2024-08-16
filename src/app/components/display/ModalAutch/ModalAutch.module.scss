@@ -1,7 +1,7 @@
 .modal_profile {
-    @apply fixed left-[20px] top-[80px] z-[800] max-w-[450px] w-[100%] bg-[#e1dfdf] rounded-xl border border-zinc-900
+    @apply fixed left-[20px] top-[80px] z-[800] max-w-[450px] w-[100%] rounded-xl border border-zinc-900
     overflow-hidden opacity-0 translate-y-[-20px] invisible
-    transition-all ease-in-out duration-[.3s] text-[#292929] dark:text-white dark:bg-zinc-900 dark:border-white;
+    transition-all ease-in-out duration-[.3s] text-[#292929] backdrop-blur-[20px] bg-[rgb(231,229,229,0.8)] dark:bg-[rgba(26,26,26,0.8)] dark:text-white  dark:border-white;
 
     @media (max-width: 1000px) {
         @apply left-0 z-[5030] top-0 min-w-full h-[100%] pt-[50px] rounded-none;
@@ -110,7 +110,8 @@
         gap: 10px;
         overflow: auto;
         height: 100%;
-        padding: 20px 10px 50px;
+        padding: 20px 10px 90px;
+        margin-top: 40px;
 
         &::-webkit-scrollbar {
             @apply w-[7px];
@@ -137,6 +138,14 @@
             }
     }
 
+    .open_s {
+        @apply absolute w-[100%] py-[10px] bg-[#00B2FF] flex flex-col items-center justify-center;
+ 
+            svg {
+                @apply text-[20px];
+            }
+    }
+
     
     .activeBack {
         @apply border-[#00B2FF];
@@ -160,6 +169,11 @@
         @apply mt-[20px] flex flex-col gap-[5px] justify-center items-center;
 
         .avatar {
+
+            span {
+                @apply w-[40px] h-[40px] rounded-full bg-[#B3B3B3];
+            }
+
             input {
                 @apply hidden;
             }

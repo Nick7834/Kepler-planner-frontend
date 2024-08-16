@@ -1,9 +1,13 @@
 .dashboard {
-    @apply fixed top-0 left-[-120px] py-[25px] flex flex-col gap-[30px] bg-[#e7e5e5] w-[240px] h-[100vh]
-    opacity-0 transition-all duration-[.3s] ease-in-out z-[5000] dark:bg-[#1A1A1A];
+    @apply fixed top-0 left-[-120px] py-[25px] flex flex-col gap-[30px] bg-[rgb(231,229,229,0.6)] w-[240px] h-[100vh]
+    opacity-0 transition-all duration-[.3s] ease-in-out z-[5000] dark:bg-[rgba(26,26,26,0.6)];
 
     @media (max-width: 1000px) {
         @apply hidden;
+    }
+
+    .blur {
+        @apply absolute top-0 left-0 w-full h-full backdrop-blur z-[-1];
     }
 
     .pin {

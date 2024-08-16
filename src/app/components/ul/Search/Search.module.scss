@@ -7,7 +7,9 @@
     }
 
     .search {
-        @apply absolute top-[20px] right-[20px] z-[5009] flex items-center rounded-[20px] p-[10px] overflow-hidden;
+        @apply absolute top-[20px] right-[20px] z-[5009] flex items-center rounded-full p-[10px] overflow-hidden
+        bg-[rgb(231,229,229,0.5)] dark:bg-[rgba(26,26,26,0.5)]
+        backdrop-blur pr-3;
 
         &::after {
             @apply content-[''] absolute top-0 left-0 w-[100%] h-[100%] bg-transparent z-[-1] opacity-0
@@ -31,7 +33,7 @@
     .active_search {
         
         &::after {
-            @apply bg-[#e7e5e5] opacity-100 dark:bg-[#262626];
+            @apply bg-[rgb(231,229,229,0.5)] opacity-100 dark:bg-[rgba(26,26,26,0.5)] backdrop-blur;
         }
 
         input {

@@ -8,6 +8,11 @@
     .button {
         @apply flex items-center gap-[20px];
 
+        @media (max-width: 1000px) {
+            @apply bg-[rgb(231,229,229,0.5)] dark:bg-[rgba(26,26,26,0.5)]
+            backdrop-blur rounded-full pr-3;
+        }
+
             span {
                 @apply w-[40px] h-[40px] rounded-full bg-[#B3B3B3];
             }

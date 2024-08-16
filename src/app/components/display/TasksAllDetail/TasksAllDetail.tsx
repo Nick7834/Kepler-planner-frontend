@@ -264,18 +264,20 @@ export const TaskAllDetail = ({taskDefault}: any) => {
                 </div> 
             </div>
 
-            <textarea
-              ref={textareaRef}
-              maxLength={1000}
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-              onBlur={() => patchTask(data?._id)}
-              onInput={inputHeight}
-              onKeyDown={handleKeyDown}
-            ></textarea>
+            <div className={styles.scrolls}>
+              <textarea
+                ref={textareaRef}
+                maxLength={1000}
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                onBlur={() => patchTask(data?._id)}
+                onInput={inputHeight}
+                onKeyDown={handleKeyDown}
+              ></textarea>
 
-            <div className={styles.categories}>
-                 <button><FaFolder />{data?.folder}</button>
+              <div className={styles.categories}>
+                  <button><FaFolder />{data?.folder}</button>
+              </div>
             </div>
 
     </div>

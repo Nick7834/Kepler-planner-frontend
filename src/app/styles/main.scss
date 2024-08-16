@@ -87,7 +87,8 @@
 }
 
 .main__tasks {
-  @apply h-[100%] w-[100%] max-w-[650px] overflow-auto flex flex-col gap-[20px] mt-[50px] mb-[20px];
+  @apply h-[100%] w-[100%] max-w-[650px] overflow-auto flex flex-col gap-[20px] mb-[20px];
+  margin-top: clamp(1.25rem, calc(0.368rem + 4.41vw), 3.125rem);
 
         &::-webkit-scrollbar {
             @apply w-[7px];
@@ -127,9 +128,9 @@
         }
 }
 
-.background_color {
-   @apply absolute top-0 left-0 w-[100%] h-[100%] z-[-1] bg-[#f6f6f6] dark:bg-[#161616] transition-all duration-[.2s] ease-in-out;
-}
+// .background_color {
+//    @apply absolute top-0 left-0 w-[100%] h-[100%] z-[-1] bg-[#f6f6f6] dark:bg-[#161616] transition-all duration-[.2s] ease-in-out;
+// }
 
 
 @keyframes back {

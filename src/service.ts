@@ -10,4 +10,14 @@ instance.interceptors.request.use((config) => {
     return config;
 });
 
+const UNSPLASH_ACCESS_KEY = 'KR00MwrDqjTRIUZVaL2FWaziubbXsaqwBuxUUpo1qDU';
+
+const backgroundSearch = axios.create({
+    baseURL: 'https://api.unsplash.com',
+    headers: {
+        Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
+    }
+})
+
 export default instance;
+export { backgroundSearch };

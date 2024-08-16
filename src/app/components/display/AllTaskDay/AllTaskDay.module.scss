@@ -1,5 +1,5 @@
 .all {
-    @apply relative py-[20px] pb-[65px] max-w-[550px] w-[100%] h-[535px] bg-[#e7e5e5] rounded-xl overflow-hidden dark:bg-zinc-900;
+    @apply relative py-[20px] pb-[65px] max-w-[550px] w-[100%] h-[535px] backdrop-blur-[20px] bg-[rgb(231,229,229,0.8)] dark:bg-[rgba(26,26,26,0.8)] rounded-xl overflow-hidden ;
 
     .tasks {
         @apply h-[100%] overflow-auto;
@@ -22,7 +22,29 @@
     }
 
     .add {
-        @apply absolute bottom-0 left-0 z-[10] w-[100%] p-[10px] bg-[#e7e5e5] dark:bg-zinc-900 ;
+        @apply absolute bottom-0 left-0 z-[10] w-[100%] p-[10px] dark:bg-none;
+
+        label {
+            background-color: none !important;
+            backdrop-filter: none !important;
+            @apply border-[#292929] dark:border-white 
+        }
+
+        textarea {
+            @apply text-[#292929] dark:text-white;
+   
+           &::placeholder {
+               @apply text-[#292929] dark:text-white;
+           }
+       }
+
+       button {
+
+            svg {
+                @apply text-[#292929] dark:text-white;
+            }
+
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 .dates {
-    @apply flex items-center gap-[40px];
+    @apply flex items-center gap-[40px] backdrop-blur bg-[rgb(231,229,229,0.6)] dark:bg-[rgba(26,26,26,0.6)] px-[20px] py-[10px] rounded-[10px]
+    max-w-[650px] w-full;
 
     @media (max-width: 1000px) {
         @apply flex-col gap-[5px];
@@ -21,7 +22,7 @@
             }
            
             span {
-                @apply text-zinc-400 text-base font-['Ubuntu'];
+                @apply text-zinc-700 dark:text-zinc-400 text-base font-['Ubuntu'];
 
                     &:first-child {
                         @apply font-bold uppercase;
@@ -35,13 +36,13 @@
                 @apply capitalize text-[#292929] text-[40px] font-bold font-['Ubuntu'] dark:text-white;
 
                 @media (max-width: 1000px) {
-                    font-size: clamp(1.875rem, calc(1.581rem + 1.47vw), 2.5rem);
+                    font-size: clamp(1.25rem, calc(0.662rem + 2.94vw), 2.5rem);
                     text-align: center;
                 }
             }
 
             p {
-                @apply text-zinc-400 text-xl font-bold font-['Inter'];
+                @apply text-zinc-700 dark:text-zinc-400 text-xl font-bold font-['Inter'];
 
                 @media (max-width: 1000px) {
                     font-size: clamp(0.875rem, calc(0.699rem + 0.88vw), 1.25rem);

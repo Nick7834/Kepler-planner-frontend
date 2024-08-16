@@ -1,133 +1,111 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import styles from './FolderPage.module.scss';
 
 import { FaRegTrashCan } from "react-icons/fa6";
 import { AllTaskFolder } from '../AllTaskFolder/AllTaskFolder';
 import { TaskDetail } from '../TaskDetail/TaskDetail';
-import instance from '@/service'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '@/redux/store'
-import { fetchFolderById, foldersAll } from '@/redux/slices/tasks';
-import { redirect, useRouter } from 'next/navigation';
+import instance from '@/service';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/redux/store';
+import { deleteFolder, fetchFolderById, fetchTasks, foldersAll, updateTasksForFolder } from '@/redux/slices/tasks';
+import { useRouter } from 'next/navigation';
 import { Loader } from '../Loader/Loader';
 
-interface folder {
-  idFolder: String,
+interface FolderProps {
+  idFolder: string,
 }
 
-export const FolderPage = ({ idFolder }: folder) => {
-
+export const FolderPage = ({ idFolder }: FolderProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  
-  const folderData = useSelector((state: RootState) => state.tasks.folders.items.find((folder: any) => folder._id === idFolder));
+  const router = useRouter(); 
+
+  const folderData = useSelector((state: RootState) => 
+    state.tasks.folders.items.find((folder: any) => folder._id === idFolder)
+  );
+
+  const [name, setFolderName] = useState('');
+  const [isLoader, setIsLoader] = useState(true);
 
   const isPinned = useSelector((state: RootState) => state.pin.pin);
   const isMouse = useSelector((state: RootState) => state.pin.mousePin);
 
-  const [name, setFolderName] = useState('');
-
-  const [isLoader, setIsLoader] = useState(true);
-
-  const router = useRouter(); 
-
   useEffect(() => {
-    if (!folderData) return;
+    if (!idFolder) return;
 
-    if (idFolder !== folderData._id) {
-      router.replace('/planner/myday'); 
-    }
-  }, [idFolder, folderData, router]);
+    const loadFolderData = async () => {
+        try {
+            setIsLoader(true); 
+            const result = await dispatch(fetchFolderById(idFolder));
 
-  useEffect(() => {
-    if(!idFolder) return;
+            if (!result.payload || Object.keys(result.payload).length === 0) {
+                router.replace('/planner/myday'); 
+                return;
+            }
 
-    const dataIdFolder = async () => {
-      
-      try {
-        dispatch(fetchFolderById(idFolder));
-        dispatch(foldersAll())
-        setIsLoader(false)
-      } catch (err) {
-        console.warn("Error:", err);
-      }
+            await dispatch(foldersAll());
+        } catch (err) {
+            console.warn("Error:", err);
+            router.replace('/planner/myday'); 
+        } finally {
+            setIsLoader(false); 
+        }
+    };
 
-    }
+    loadFolderData();
+}, [dispatch, idFolder, router]);
 
-    dataIdFolder()
-
-  }, [dispatch, idFolder]);
-
-  useEffect(() => {
+useEffect(() => {
     if (folderData) {
-      setFolderName(folderData?.name);
+        setFolderName(folderData.name || '');
     }
-  }, [folderData]);
+}, [folderData]);
 
-  ///
-
-  const delFolderNow = async (id: any) => {
+  const delFolderNow = async (id: string) => {
     try {
-      await instance.delete(`/folders/${id}`);
-      dispatch(foldersAll());
-      setIsLoader(false)
-      setIsLoader(false)
+      await dispatch(deleteFolder(id));
       router.replace('/planner/myday');
     } catch (error) {
-      console.error('An error occurred when deleting the folder!!:', error)
+      console.error('An error occurred when deleting the folder:', error);
     }
-  }
+  };
 
-  const patchFolder = async (id: any) => {
+  const patchFolder = async (id: string) => {
+    if (!name.trim() || name === folderData?.name) return;
 
-    if(!folderData?.name.trim()) return;
+    const updatedFolder = { name };
 
-    const updatedFolder = {
-      name,
+    try {
+      await instance.patch(`/folders/${id}`, updatedFolder);
+      await dispatch(foldersAll());
+      await dispatch(fetchTasks());
+      await dispatch(updateTasksForFolder(id));
+    } catch (error) {
+      console.error('An error occurred when updating the folder:', error);
     }
-
-      if (name !== folderData?.name) {
-          try {
-              await instance.patch(`/folders/${id}`, updatedFolder);
-              dispatch(foldersAll());
-          } catch (error) {
-              console.error('An error occurred when updating the folder:', error);
-          }
-      }
-
-  }
+  };
 
   return (
     <div className={`${styles.folder} ${isPinned || isMouse ? 'active_left' : ''}`}>
-
       <div className={styles.folder_main}>
+        <div className={styles.top}>
+          <input 
+            type="text" 
+            value={name}
+            onChange={e => setFolderName(e.target.value)}
+            onBlur={() => patchFolder(idFolder)}
+          />
+          <button onClick={() => delFolderNow(idFolder)}><FaRegTrashCan /></button>
+        </div>
 
-          <div className={styles.top}>
-              
-              <input 
-                type="text" 
-                value={name}
-                onChange={e => setFolderName(e.target.value)}
-                onBlur={() => patchFolder(folderData._id)}
-              />
-
-              <button onClick={() => delFolderNow(idFolder)}><FaRegTrashCan /></button>
-
-          </div>
-
-          <div className={styles.blocks}>
-              <AllTaskFolder idFolderTask={idFolder} taskFolder={folderData}  />
-
-              {isLoader ? 
-              (<Loader />) 
-              : 
-              (folderData?.tasks.length > 0) && (
-                <TaskDetail taskDefault={folderData} folderId={idFolder} />
-              )}
-          </div>
-
+        <div className={styles.blocks}>
+          {isLoader && <Loader />}
+          <AllTaskFolder idFolderTask={idFolder} taskFolder={folderData} />
+          {folderData?.tasks.length > 0 && (
+            <TaskDetail taskDefault={folderData} folderId={idFolder} folderName={name} />
+          )}
+        </div>
       </div>
-
     </div>
-  )
-}
+  );
+};

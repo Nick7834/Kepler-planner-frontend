@@ -1,8 +1,8 @@
 .task_section {
 
     .task_block {
-        @apply invisible fixed top-0 right-[-120px] py-[25px] px-[15px] flex flex-col gap-[30px] bg-[#e7e5e5] w-[350px] h-[100vh]
-        opacity-0 transition-all duration-[.3s] ease-in-out dark:bg-[#1A1A1A];
+        @apply backdrop-blur invisible fixed top-0 right-[-120px] py-[25px] px-[15px] flex flex-col gap-[30px] bg-[rgb(231,229,229,0.6)] w-[350px] h-[100vh]
+        opacity-0 transition-all duration-[.3s] ease-in-out dark:bg-[rgba(26,26,26,0.6)];
 
         @media (max-width: 1000px) {
             @apply z-[5001];
@@ -36,7 +36,7 @@
     }
 
     .open {
-       @apply z-50 fixed top-[45%] right-0 py-[40px] px-[15px] bg-[#f6f6f6] rounded-l-[20px] dark:bg-[#161616];
+       @apply backdrop-blur z-50 fixed top-[45%] right-0 py-[40px] px-[15px] bg-[rgb(231,229,229,0.6)] rounded-l-[20px] dark:bg-[rgba(26,26,26,0.6)];
        box-shadow: -5px 1px 10px 3px rgba(32, 32, 32, 0.2);
 
         @media (max-width: 1000px) {

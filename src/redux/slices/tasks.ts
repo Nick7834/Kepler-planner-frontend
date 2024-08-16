@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, createAction, createSelector } from "@reduxjs/toolkit";
 import instance from "@/service";
+import { RootState } from "../store";
  
 
     // all tasks
@@ -44,6 +45,38 @@ import instance from "@/service";
                 payload: newTaskData
             };
         });
+
+        export const updateTasksForFolder = createAsyncThunk(
+            '/tasks/updateTasksForFolder',
+            async (folderId: string, { getState }) => {
+                const { tasks } = getState() as RootState;
+                const tasksToUpdate = tasks.week.items.flatMap(day =>
+                    day.tasks.filter((task: any) => task.folderId === folderId)
+                );
+        
+                const updatedTasks = await Promise.all(
+                    tasksToUpdate.map(task =>
+                        instance.patch(`/tasks/${task._id}`, { ...task, folderId })
+                    )
+                );
+        
+                return updatedTasks.map(response => response.data);
+            }
+        );
+
+        export const deleteFolder = createAsyncThunk('/folders/deleteFolder', async (id: string, { dispatch }) => {
+            try {
+                // Удаляем папку на сервере
+                await instance.delete(`/folders/${id}`);
+                
+                // Возвращаем ID папки, чтобы затем удалить связанные с ней задачи в `extraReducers`
+                return id;
+            } catch (error) {
+                console.error('An error occurred when deleting the folder:', error);
+                throw error;
+            }
+        });
+        
 
 
 // patch tasks
@@ -178,16 +211,20 @@ const tasksSlice = createSlice({
                 dayTasks.tasks.push(action.payload);
             })
             .addCase(fetchTasks.pending, (state) => {
-                state.tasks.items = [];
-                state.tasks.status = 'loading';
+                if (state.tasks.status !== 'loaded') {
+                    state.tasks.items = [];
+                    state.tasks.status = 'loading';
+                }
             })
             .addCase(fetchTasks.fulfilled, (state, action) => {
                 state.tasks.items = action.payload;
                 state.tasks.status = 'loaded';
             })
             .addCase(fetchTasks.rejected, (state) => {
-                state.tasks.items = [];
-                state.tasks.status = 'error';
+                if (state.tasks.status !== 'loaded') {
+                    state.tasks.items = [];
+                    state.tasks.status = 'error';
+                }
             })
             .addCase(taskToday.pending, (state) => {
                 state.todayTasks.status = 'loading';
@@ -263,6 +300,59 @@ const tasksSlice = createSlice({
                   state.tasks.items.push(task);
                 }
             })
+            .addCase(updateTasksForFolder.fulfilled, (state, action) => {
+                const updatedTasks = action.payload;
+            
+                updatedTasks.forEach(updatedTask => {
+            
+                    // Обновление задачи в week.items
+                    const dayIndex = state.week.items.findIndex(day =>
+                        day.tasks.some((t: any) => t._id === updatedTask._id)
+                    );
+            
+                    if (dayIndex !== -1) {
+                        const taskIndex = state.week.items[dayIndex].tasks.findIndex((t: any) =>
+                            t._id === updatedTask._id
+                        );
+            
+                        if (taskIndex !== -1) {
+                            state.week.items[dayIndex].tasks[taskIndex] = {
+                                ...state.week.items[dayIndex].tasks[taskIndex],
+                                ...updatedTask
+                            };
+                        }
+                    }
+            
+                    // Обновление задачи в tasks.items
+                    const taskToUpdateIndex = state.tasks.items.findIndex(task => task._id === updatedTask._id);
+                    if (taskToUpdateIndex !== -1) {
+                        state.tasks.items[taskToUpdateIndex] = {
+                            ...state.tasks.items[taskToUpdateIndex],
+                            ...updatedTask
+                        };
+                    }
+            
+                    // Обновление задачи в todayTasks.items
+                    const todayTaskIndex = state.todayTasks.items.findIndex(task => task._id === updatedTask._id);
+                    if (todayTaskIndex !== -1) {
+                        state.todayTasks.items[todayTaskIndex] = {
+                            ...state.todayTasks.items[todayTaskIndex],
+                            ...updatedTask
+                        };
+                    }
+            
+                    // Обновление задачи в папках
+                    state.folders.items.forEach(folder => {
+                        const folderTaskIndex = folder.tasks.findIndex((t: any) => t._id === updatedTask._id);
+                        if (folderTaskIndex !== -1) {
+                            folder.tasks[folderTaskIndex] = {
+                                ...folder.tasks[folderTaskIndex],
+                                ...updatedTask
+                            };
+                        }
+                    });
+                });
+            })            
             .addCase(taskWeek.pending, (state) => {
                 state.week.items = [];
                 state.week.status = 'loading';
@@ -294,6 +384,31 @@ const tasksSlice = createSlice({
                     folder.tasks = folder.tasks.filter((task: any) => task._id !== deletedTaskId);
                 });
             })
+            .addCase(deleteFolder.fulfilled, (state, action) => {
+                const deletedFolderId = action.payload;
+                
+                // Удаляем задачи, связанные с удаленной папкой, из общего списка задач
+                state.tasks.items = state.tasks.items.filter(task => task.folderId !== deletedFolderId);
+                
+                // Удаляем задачи, связанные с удаленной папкой, из списка задач на сегодня
+                state.todayTasks.items = state.todayTasks.items.filter(task => task.folderId !== deletedFolderId);
+                
+                // Удаляем задачи, связанные с удаленной папкой, из списка задач на неделю
+                state.week.items.forEach(day => {
+                    day.tasks = day.tasks.filter((task: any) => task.folderId !== deletedFolderId);
+                });
+
+                // Удаляем задачи, связанные с удаленной папкой, из папок
+                state.folders.items.forEach(folder => {
+                    folder.tasks = folder.tasks.filter((task: any) => task.folderId !== deletedFolderId);
+                });
+
+                // Удаляем саму папку из списка папок
+                state.folders.items = state.folders.items.filter(folder => folder._id !== deletedFolderId);
+            })
+            .addCase(deleteFolder.rejected, (state, action) => {
+                console.error('Failed to delete the folder:', action.error.message);
+            })
             .addCase(foldersAll.pending, (state) => {
                 state.folders.status = 'loading';
             })
@@ -309,10 +424,12 @@ const tasksSlice = createSlice({
                 state.folders.status = 'loading';
             })
             .addCase(fetchFolderById.fulfilled, (state, action) => {
-                const index = state.folders.items.findIndex(folderId => folderId._id === action.payload.id);
+                const index = state.folders.items.findIndex(folder => folder._id === action.payload._id);
             
                 if (index !== -1) {
-                    (state.folders.items as any[])[index] = action.payload;
+                    state.folders.items[index] = action.payload;
+                } else {
+                    state.folders.items.push(action.payload);
                 }
                 state.folders.status = 'loaded';
             })

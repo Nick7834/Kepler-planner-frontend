@@ -1,0 +1,72 @@
+.searchBackground {
+    @apply fixed top-0 left-0 z-[10000] invisible opacity-0 scale-75 rounded-full
+    w-[100%] h-[100%] flex flex-col justify-center
+    items-center transition-all duration-[.3s] ease-in-out;
+
+    background-color: rgba(35, 35, 35, 0.8);
+
+    .modal {
+        @apply flex flex-col gap-[40px];
+    }
+
+    .ss {
+        @apply max-w-[254px] w-[100%] sm:max-w-[474px] md:max-w-[717px] lg:max-w-[1067px];
+    }
+
+    .grids {
+        @apply py-[10px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 overflow-auto h-[564px];
+
+        &::-webkit-scrollbar {
+            @apply w-0;
+        }
+    }
+
+    .card {
+        @apply max-w-[250px] h-[150px] cursor-pointer rounded-[10px] border-[2px] border-solid border-white overflow-hidden transition-all ease-in-out duration-[.3s];
+        img {
+            @apply w-[100%] h-[100%] object-cover;
+        }
+
+            &:hover {
+                @apply translate-y-[-10px]
+            }
+    }
+
+    .search {
+        @apply block cursor-text px-[15px] py-[12px] relative max-w-[100%] w-[100%] border-[2px] border-solid  rounded-[12px] border-white
+        backdrop-blur  bg-[rgba(26,26,26,0.2)];
+
+            form {
+                @apply flex items-center gap-[10px];
+
+                svg {
+                    @apply text-white;
+                }
+            }
+
+            input {
+                @apply w-[100%] outline-none border-0 bg-transparent  text-base font-medium text-white; 
+
+                    &::placeholder {
+                        @apply text-base font-medium text-white;
+                    }
+            }
+    }
+
+    .close {
+        @apply absolute top-0 right-0 m-[20px] text-white;
+
+        svg {
+            @apply text-[40px];
+        }
+    }
+
+    &.active_search_background {
+        @apply opacity-100 visible scale-100 rounded-none;
+    }
+
+    .activeBack {
+        @apply border-[#00B2FF];
+    }
+
+}
