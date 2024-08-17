@@ -10,7 +10,7 @@ instance.interceptors.request.use((config) => {
     return config;
 });
 
-const UNSPLASH_ACCESS_KEY = 'KR00MwrDqjTRIUZVaL2FWaziubbXsaqwBuxUUpo1qDU';
+const UNSPLASH_ACCESS_KEY = process.env.NEXT_PUBLIC_API_BACK;
 
 const backgroundSearch = axios.create({
     baseURL: 'https://api.unsplash.com',
