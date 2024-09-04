@@ -1,8 +1,12 @@
 .task_section {
 
     .task_block {
-        @apply backdrop-blur invisible fixed top-0 right-[-120px] py-[25px] px-[15px] flex flex-col gap-[30px] bg-[rgb(231,229,229,0.6)] w-[350px] h-[100vh]
+        @apply backdrop-blur invisible fixed top-0 right-[-120px] py-[25px] px-[15px] flex flex-col gap-[30px] bg-[rgb(231,229,229,0.6)] w-[350px] h-[100dvh]
         opacity-0 transition-all duration-[.3s] ease-in-out dark:bg-[rgba(26,26,26,0.6)];
+
+        @media (max-width: 400px) {
+            @apply w-auto;
+        }
 
         @media (max-width: 1000px) {
             @apply z-[5001];

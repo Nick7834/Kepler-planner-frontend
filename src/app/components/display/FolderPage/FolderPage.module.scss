@@ -2,7 +2,7 @@
     @apply h-[100vh] flex flex-col justify-center items-center transition-all duration-[.2s] ease-in-out;
 
     @media (max-width: 1000px) {
-        @apply h-[95dvh] overflow-auto px-[15px] pt-[100px] pb-[50px] items-start justify-normal;
+        @apply h-[95dvh] overflow-auto px-[15px] pt-[100px] pb-[50px] justify-normal;
     }
 
     .folder_main {
