@@ -2,14 +2,14 @@
     @apply h-[100vh] w-full flex flex-col justify-center items-center transition-all duration-[.2s] ease-in-out;
 
     @media (max-width: 1000px) {
-        @apply h-full px-[15px] pt-[70px] pb-[50px];
+        @apply h-[95vh] overflow-auto px-[15px] pt-[70px] pb-[50px] items-start justify-normal;
     }
     
         .folder_main {
             @apply h-[100vh] w-full flex flex-col justify-center items-center;
 
             @media (max-width: 1000px) {
-                @apply h-full;
+                @apply h-auto pb-[10px] max-w-[550px] w-full justify-normal items-start;
             }
         }
     

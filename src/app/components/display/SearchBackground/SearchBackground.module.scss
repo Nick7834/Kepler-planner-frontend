@@ -14,7 +14,7 @@
     }
 
     .grids {
-        @apply py-[10px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 overflow-auto h-[564px];
+        @apply py-[10px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 overflow-auto h-[60dvh];
 
         &::-webkit-scrollbar {
             @apply w-0;

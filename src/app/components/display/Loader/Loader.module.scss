@@ -1,5 +1,5 @@
 .back_loder {
-    @apply absolute top-0 left-0 w-[100%] h-[100%] z-[50000]
+    @apply absolute top-0 left-0 w-[100%] h-[100dvh] z-[50000]
     flex justify-center items-center bg-[#e7e5e5] dark:bg-[#262626];
 }
 

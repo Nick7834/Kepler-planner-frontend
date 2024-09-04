@@ -37,7 +37,8 @@
         }
 
         input {
-            @apply w-[300px] px-[15px];
+            @apply px-[15px];
+            width: clamp(15rem, 75vw, 18.75rem);
         }
 
     }

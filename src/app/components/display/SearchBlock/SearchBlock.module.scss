@@ -1,6 +1,10 @@
 .search_block {
-    @apply fixed top-[70px] right-[55px] z-[5010] w-[300px] p-[10px] rounded-[20px] bg-[rgb(231,229,229,0.5)] dark:bg-[rgba(26,26,26,0.5)]
-    backdrop-blur transition-all ease-in-out duration-[.3s] max-h-[400px] overflow-auto;
+    @apply fixed top-[70px] z-[5010] p-[10px] rounded-[20px] bg-[rgb(231,229,229,0.5)] dark:bg-[rgba(26,26,26,0.5)]
+    backdrop-blur transition-all ease-in-out duration-[.3s] overflow-auto;
+
+    width: clamp(16.875rem, calc(9.375rem + 37.5vw), 18.75rem);
+    max-height: clamp(12.5rem, calc(-37.5rem + 250vw), 25rem);
+    right: clamp(2.063rem, calc(-3.438rem + 27.5vw), 3.438rem);
 
     &::-webkit-scrollbar {
         @apply w-[4px];
