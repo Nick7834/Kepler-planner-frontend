@@ -27,6 +27,13 @@ export default function RootPlaner({
   children: React.ReactNode;
 }>) {
 
+  useEffect(() => {
+    document.body.classList.add('no-scroll');
+    return () => {
+        document.body.classList.remove('no-scroll');
+    };
+}, []);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const user = useSelector((state: RootState) => state.auth.data) as any; 

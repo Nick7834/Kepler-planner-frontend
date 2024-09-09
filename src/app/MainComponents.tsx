@@ -7,6 +7,9 @@ import { fetchAuthMe, isAuth } from '@/redux/slices/auth';
 
 const MainComponents = ({ children }: { children: ReactNode }) => {
 
+  useEffect(() => {
+    document.body.classList.remove('no-scroll');
+  }, []);
 
   const dispatch = useDispatch<AppDispatch>();
   let isAuths = useSelector(isAuth);

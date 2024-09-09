@@ -11,7 +11,7 @@
 
 // Blocks
 
-body {
+.no-scroll {
     overflow: hidden;
 }
 
@@ -36,6 +36,11 @@ body {
         @media (max-width: 400px) {
             height: inherit;
         }
+}
+
+.main-page {
+    overflow: auto !important;
+    min-height: 100vh;
 }
 
 .app {

@@ -4,6 +4,7 @@ import "./styles/main.scss";
 import Providers from "./providers";
 import { ProviderMain } from "@/redux/Provider";
 import MainComponents from "./MainComponents";
+import { useEffect } from "react";
 
 export const metadata: Metadata = {
   title: "Kepler Planner",
