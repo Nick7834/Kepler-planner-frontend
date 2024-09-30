@@ -68,6 +68,20 @@ export const TaskSection = () => {
         dispatch(setOpenRandom(!openRand))
    }
 
+   useEffect(() => {
+    const handKeyOpenRecommended = (e: KeyboardEvent) => {
+      if (e.shiftKey && (e.key === 'r' || e.key === 'R')) {
+        dispatch(setOpenRandom(!openRand))
+      }
+    }
+
+    window.addEventListener('keydown', handKeyOpenRecommended);
+
+    return () => {
+        window.removeEventListener('keydown', handKeyOpenRecommended);
+    }
+}, [dispatch, openRand]);
+
   return (
     <div className={styles.task_section}>
 

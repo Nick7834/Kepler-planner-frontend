@@ -60,7 +60,14 @@ export const AllTaskFolder = ({ idFolderTask, taskFolder }:folderTask) => {
 
         </div>
 
-      <div className={styles.add}><AddTask value={newTaskAll} onChange={setNewTaskAll} onAddTask={handleAddTaskAll} /></div>
+      <div className={styles.add}>
+        <AddTask 
+        value={newTaskAll} 
+        onChange={setNewTaskAll} 
+        onAddTask={handleAddTaskAll}  
+        className={newTaskAll.length > 0 ? styles.activeAddTaskBack : ''}
+        />
+        </div>
 
     </div>
   )

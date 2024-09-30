@@ -72,7 +72,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
         document.removeEventListener('keydown', closeKey);
       }
   
-    }, []);
+    }, [closeModal]);
 
     useEffect(() => {
       if(!open) return;
@@ -90,7 +90,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
         document.removeEventListener('click', closeProfile);
       }
   
-    }, [open]);
+    }, [closeModal, open]);
 
     const handCloseMob = () => {
       closeModal()
@@ -100,6 +100,20 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
       closeModal();
       dispatch(setOpenBack(true))
     }
+
+    useEffect(() => {
+      const handKeyOpenBackground = (e: KeyboardEvent) => {
+        if (e.shiftKey && (e.key === 'b' || e.key === 'B')) {
+          dispatch(setOpenBack(true))
+        }
+      }
+
+      window.addEventListener('keydown', handKeyOpenBackground);
+
+      return () => {
+          window.removeEventListener('keydown', handKeyOpenBackground);
+      }
+  }, [dispatch]);
 
     const updateDarkState = (value: boolean) => {
       setDark(value);
@@ -155,6 +169,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
             <button onClick={() => setTabs(1)}>My profile</button>
             <button onClick={() => {setTabs(2), getFetchBackground()}}>Background</button>
             <button onClick={() => setTabs(3)}>Theme</button>
+            <button className={styles.hotkey} onClick={() => setTabs(4)}>Hotkeys</button>
             <a target='_blank' href="https://github.com/Nick7834">GitHub</a>
             <button onClick={Exit}>Exit</button>
         </div>
@@ -208,6 +223,21 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
                     <BsMoonStarsFill />
                 </button>
 
+            </div>
+
+            <div className={`${styles.blocks} ${styles.key} ${tabs === 4 ? `${styles.active_tab}` : ''}`}>
+                <button onClick={() => setTabs(0)} className={styles.back}><FaArrowLeftLong /></button>
+
+                <h2>Hotkeys</h2>
+
+                <ul>
+                    <li><strong>Shift + Enter:</strong> Line break</li>
+                    <li><strong>Shift + F:</strong> Create folder</li>
+                    <li><strong>Shift + B:</strong> Open background search</li>
+                    <li><strong>Shift + R:</strong> Open or Close recommendations</li>
+                    <li><strong>Shift + S:</strong> Open or Close search</li>
+                    <li><strong>Shift + P:</strong> Open or Close menu</li>
+                </ul>
             </div>
 
         </div>

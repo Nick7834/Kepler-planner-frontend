@@ -30,7 +30,7 @@ export const AddFolder = ({ openModalFolder, closeModal }:modalFolder) => {
       document.removeEventListener('keydown', closeKey);
     }
 
-  }, []);
+  }, [closeModal]);
 
   useEffect(() => {
     if(!openModalFolder) return;
@@ -48,7 +48,7 @@ export const AddFolder = ({ openModalFolder, closeModal }:modalFolder) => {
       document.removeEventListener('click', closeWindow);
     }
 
-  }, [openModalFolder]);
+  }, [closeModal, openModalFolder]);
 
   const createFolder = (e: any) => {
     e.preventDefault(); 

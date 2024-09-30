@@ -26,12 +26,26 @@ export const Search = ({ value, onChange }:searchTask) => {
     document.addEventListener('click', closeShow);
     return () => document.removeEventListener('click', closeShow);
 
-  }, []);
+  }, [onChange]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     onChange(newValue);
   };
+
+  useEffect(() => {
+    const handKeyOpenRecommended = (e: KeyboardEvent) => {
+      if (e.shiftKey && (e.key === 's' || e.key === 'S')) {
+        setSearchOpen(!searchOpen)
+      }
+    }
+
+    window.addEventListener('keydown', handKeyOpenRecommended);
+
+    return () => {
+        window.removeEventListener('keydown', handKeyOpenRecommended);
+    }
+}, [searchOpen]);
 
   return (
     <div className={styles.search_block}>

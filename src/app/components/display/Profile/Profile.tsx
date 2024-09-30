@@ -19,6 +19,20 @@ export const Profile = () => {
       setProfile(false)
     }
 
+    useEffect(() => {
+      const handKeyOpenRecommended = (e: KeyboardEvent) => {
+        if (e.shiftKey && (e.key === 'p' || e.key === 'P')) {
+          setProfile(!profile)
+        }
+      }
+  
+      window.addEventListener('keydown', handKeyOpenRecommended);
+  
+      return () => {
+          window.removeEventListener('keydown', handKeyOpenRecommended);
+      }
+  }, [profile]);
+
     // new year 
 
     const currentYear = new Date();

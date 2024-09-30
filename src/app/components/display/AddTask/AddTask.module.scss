@@ -3,9 +3,13 @@
     backdrop-blur bg-[rgb(231,229,229,0.2)] dark:bg-[rgba(26,26,26,0.2)];
     
     textarea {
-         @apply block overflow-hidden resize-none w-[98%] h-[25px] outline-none border-0 bg-transparent
-         text-base font-medium text-white;
+         @apply block resize-none w-[98%] h-[25px] max-h-[250px] outline-none border-0 bg-transparent
+         text-base font-medium text-white overflow-auto;
 
+         &::-webkit-scrollbar {
+            @apply w-0;
+        }
+        
         &::placeholder {
             @apply text-base font-medium text-white;
         }
@@ -28,8 +32,14 @@
 
             &:hover {
                 svg {
-                    @apply text-[#00B2FF]
+                    @apply text-[#00B2FF];
                 }
             }
     }
+
+    // .activeAddTaskBack {
+    //     background-color: rgba(231, 229, 229, 0.9);
+    //     @apply dark:bg-gray-800; // Используйте стандартный класс для темного фона
+    // }
+
 }

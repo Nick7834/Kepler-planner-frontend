@@ -7,9 +7,10 @@ interface AddTaskProps {
   value: string;
   onChange: (newValue: string) => void;
   onAddTask: (e: any) => void;
+  className?: string;
 }
 
-export const AddTask: React.FC<AddTaskProps> = ({ value, onChange, onAddTask }) => {
+export const AddTask: React.FC<AddTaskProps> = ({ value, onChange, onAddTask, className }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const inputHeight = () => {
@@ -21,15 +22,19 @@ export const AddTask: React.FC<AddTaskProps> = ({ value, onChange, onAddTask }) 
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); 
+      if(e.shiftKey) {
+        return; 
+      } else {
+          e.preventDefault(); 
 
-      if (!value.trim()) return;
-   
-      onAddTask(e); 
+          if (!value.trim()) return;
       
-      if (textareaRef.current) {
-        textareaRef.current.style.height = '25px';
-      } 
+          onAddTask(e); 
+          
+          if (textareaRef.current) {
+            textareaRef.current.style.height = '25px';
+          } 
+      }
     }
   };
 
@@ -46,7 +51,7 @@ export const AddTask: React.FC<AddTaskProps> = ({ value, onChange, onAddTask }) 
   }
 
   return (
-    <label className={styles.add_task}>
+    <label className={`${styles.add_task} ${className}`}>
       <form>
         <textarea
           ref={textareaRef}

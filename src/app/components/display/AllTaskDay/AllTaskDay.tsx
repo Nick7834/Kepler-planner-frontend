@@ -57,7 +57,14 @@ export const AllTaskDay = ({taskInfo}: any) => {
 
         </div>
 
-      <div className={styles.add}><AddTask value={newTask} onChange={setNewTask} onAddTask={handleAddTaskToday} /></div>
+      <div className={styles.add}>
+        <AddTask 
+        value={newTask} 
+        onChange={setNewTask} 
+        onAddTask={handleAddTaskToday} 
+        className={newTask.length > 0 ? styles.activeAddTaskBack : ''}
+        />
+        </div>
 
     </div>
   )

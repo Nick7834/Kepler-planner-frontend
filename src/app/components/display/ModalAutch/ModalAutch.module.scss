@@ -30,7 +30,7 @@
                     @apply bg-[#f2f2f2] dark:bg-[#292929];
                 }
 
-                &:nth-child(5) {
+                &:last-child {
                     @apply text-[#FF5E5E];
                 }
             }
@@ -43,6 +43,12 @@
                 }
             }
 
+    }
+
+    .hotkey {
+        @media (max-width: 1000px) {
+            display: none;
+        }
     }
 
     .blocks {
@@ -211,4 +217,31 @@
         }
     }
 
+}
+
+// Available Hotkeys
+
+.key {
+    padding: 0 20px;
+
+    @media (max-width: 1000px) {
+        display: none;
+    }
+
+    h2 {
+        @apply pt-[10px] text-[20px] font-bold text-center;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+
+        margin-top: 20px;
+
+        li {
+          @apply text-base;
+        }
+    }
 }

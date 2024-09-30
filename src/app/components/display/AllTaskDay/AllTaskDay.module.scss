@@ -47,4 +47,11 @@
         }
     }
 
+    .activeAddTaskBack {
+        background-color: rgba(231, 229, 229, 0.9);
+        @media (prefers-color-scheme: dark) {
+            background-color: rgba(26, 26, 26, 0.9) !important;
+        }
+    }
+
 }

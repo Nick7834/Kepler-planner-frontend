@@ -63,7 +63,7 @@ export const Folders = () => {
      }
 
      createFolderFetch()
-    }, [folderName]);
+    }, [dispatch, folderName, router]);
 
 
     useEffect(() => {
@@ -72,6 +72,21 @@ export const Folders = () => {
           useList.current.style.maxHeight = newHeight;
       }
     }, [folder, toggleFolder]);
+
+  
+    useEffect(() => {
+        const handKeyOpenFolder = (e: KeyboardEvent) => {
+          if (e.shiftKey && (e.key === 'f' || e.key === 'F')) {
+              dispatch(setOpenFolder(true));
+          }
+        }
+
+        window.addEventListener('keydown', handKeyOpenFolder);
+    
+        return () => {
+            window.removeEventListener('keydown', handKeyOpenFolder);
+        }
+    }, [dispatch]);
 
   return (
     <div className={styles.folder_block}>
