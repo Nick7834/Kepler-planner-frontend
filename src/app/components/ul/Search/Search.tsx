@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FiSearch } from "react-icons/fi";
 import styles from './Search.module.scss'
+import useKeyPress from '@/app/hooks/useKeyPress';
 
 interface searchTask {
   value: string,
@@ -33,19 +34,7 @@ export const Search = ({ value, onChange }:searchTask) => {
     onChange(newValue);
   };
 
-  useEffect(() => {
-    const handKeyOpenRecommended = (e: KeyboardEvent) => {
-      if (e.shiftKey && (e.key === 's' || e.key === 'S')) {
-        setSearchOpen(!searchOpen)
-      }
-    }
-
-    window.addEventListener('keydown', handKeyOpenRecommended);
-
-    return () => {
-        window.removeEventListener('keydown', handKeyOpenRecommended);
-    }
-}, [searchOpen]);
+  useKeyPress('s', !searchOpen, () => setSearchOpen(!searchOpen));
 
   return (
     <div className={styles.search_block}>

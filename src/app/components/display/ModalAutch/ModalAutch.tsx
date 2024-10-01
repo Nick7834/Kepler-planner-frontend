@@ -14,6 +14,7 @@ import { fetchAuthMe, logout, authSlice, updateAvatar, isAuth } from '@/redux/sl
 import instance from '@/service';
 import Image from 'next/image';
 import { setOpenBack } from '@/redux/slices/pin';
+import useKeyPress from '@/app/hooks/useKeyPress';
 
 interface openProfile {
     open: Boolean,
@@ -101,19 +102,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
       dispatch(setOpenBack(true))
     }
 
-    useEffect(() => {
-      const handKeyOpenBackground = (e: KeyboardEvent) => {
-        if (e.shiftKey && (e.key === 'b' || e.key === 'B')) {
-          dispatch(setOpenBack(true))
-        }
-      }
-
-      window.addEventListener('keydown', handKeyOpenBackground);
-
-      return () => {
-          window.removeEventListener('keydown', handKeyOpenBackground);
-      }
-  }, [dispatch]);
+    useKeyPress('b', true, () => dispatch(setOpenBack(true)));  
 
     const updateDarkState = (value: boolean) => {
       setDark(value);

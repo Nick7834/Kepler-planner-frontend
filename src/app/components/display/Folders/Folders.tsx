@@ -12,6 +12,7 @@ import instance from '@/service';
 import { foldersAll } from '@/redux/slices/tasks';
 import { usePathname, useRouter } from 'next/navigation';
 import { setOpenFolder } from '@/redux/slices/pin';
+import useKeyPress from '@/app/hooks/useKeyPress';
 
 export const Folders = () => {
 
@@ -73,20 +74,7 @@ export const Folders = () => {
       }
     }, [folder, toggleFolder]);
 
-  
-    useEffect(() => {
-        const handKeyOpenFolder = (e: KeyboardEvent) => {
-          if (e.shiftKey && (e.key === 'f' || e.key === 'F')) {
-              dispatch(setOpenFolder(true));
-          }
-        }
-
-        window.addEventListener('keydown', handKeyOpenFolder);
-    
-        return () => {
-            window.removeEventListener('keydown', handKeyOpenFolder);
-        }
-    }, [dispatch]);
+    useKeyPress('f', true, () => dispatch(setOpenFolder(true)));
 
   return (
     <div className={styles.folder_block}>

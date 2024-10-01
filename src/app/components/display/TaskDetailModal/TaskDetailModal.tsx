@@ -57,7 +57,7 @@ export const TaskDetailModal = () => {
 
     useEffect(() => {
       setSelectedTaskId(null)
-    }, [data, selectedTaskId])
+    }, [data, selectedTaskId, setSelectedTaskId]);
 
     useEffect(() => {
 
@@ -73,7 +73,7 @@ export const TaskDetailModal = () => {
         document.removeEventListener('keydown', closeKey);
       }
   
-    }, []);
+    }, [setModalOpenTask]);
 
     useEffect(() => {
       if(!modalOpenTask) return;
@@ -91,7 +91,7 @@ export const TaskDetailModal = () => {
         document.removeEventListener('click', closeModal);
       }
   
-    }, [modalOpenTask]);
+    }, [modalOpenTask, setModalOpenTask]);
 
     // get
 
@@ -163,12 +163,13 @@ export const TaskDetailModal = () => {
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (e.key === 'Enter') {
-        e.preventDefault(); 
-  
-        if (!data?.title.trim()) return;
-     
-        patchTask(data?._id); 
-        
+        if(e.shiftKey) {
+          return; 
+        } else {
+            e.preventDefault(); 
+            if (!data?.title.trim()) return;
+            patchTask(data?._id); 
+        }
       }
     };
 

@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from '@/redux/store';
 import instance from '@/service';
 import { foldersAll, taskToday, updateTask } from '@/redux/slices/tasks';
 import { setOpenRandom } from '@/redux/slices/pin';
+import useKeyPress from '@/app/hooks/useKeyPress';
 
 export const TaskSection = () => {
 
@@ -68,19 +69,7 @@ export const TaskSection = () => {
         dispatch(setOpenRandom(!openRand))
    }
 
-   useEffect(() => {
-    const handKeyOpenRecommended = (e: KeyboardEvent) => {
-      if (e.shiftKey && (e.key === 'r' || e.key === 'R')) {
-        dispatch(setOpenRandom(!openRand))
-      }
-    }
-
-    window.addEventListener('keydown', handKeyOpenRecommended);
-
-    return () => {
-        window.removeEventListener('keydown', handKeyOpenRecommended);
-    }
-}, [dispatch, openRand]);
+   useKeyPress('r', !openRand, handOpenRand);
 
   return (
     <div className={styles.task_section}>

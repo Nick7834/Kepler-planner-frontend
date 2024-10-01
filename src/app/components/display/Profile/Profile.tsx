@@ -7,6 +7,7 @@ import ModalAutch from '../ModalAutch/ModalAutch';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { fetchAuthMe } from '@/redux/slices/auth';
+import useKeyPress from '@/app/hooks/useKeyPress';
 
 
 export const Profile = () => {
@@ -19,19 +20,7 @@ export const Profile = () => {
       setProfile(false)
     }
 
-    useEffect(() => {
-      const handKeyOpenRecommended = (e: KeyboardEvent) => {
-        if (e.shiftKey && (e.key === 'p' || e.key === 'P')) {
-          setProfile(!profile)
-        }
-      }
-  
-      window.addEventListener('keydown', handKeyOpenRecommended);
-  
-      return () => {
-          window.removeEventListener('keydown', handKeyOpenRecommended);
-      }
-  }, [profile]);
+    useKeyPress('p', !profile, () => setProfile(!profile));
 
     // new year 
 
