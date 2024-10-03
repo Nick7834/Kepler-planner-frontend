@@ -28,7 +28,7 @@ export const DayCard = () => {
     } else {
       setIsLoader(false)
     }
-  }, [dispatch, week]);
+  }, [dispatch, taskItems.length, week]);
 
   const handleInputChange = (day: any, value: any) => {
     setNewTaskSeven((prev: any) => ({ ...prev, [day]: value }));

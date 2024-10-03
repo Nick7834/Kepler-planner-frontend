@@ -12,6 +12,9 @@ import { deleteFolder, fetchFolderById, fetchTasks, foldersAll, updateTasksForFo
 import { useRouter } from 'next/navigation';
 import { Loader } from '../Loader/Loader';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 interface FolderProps {
   idFolder: string,
 }
@@ -63,10 +66,35 @@ useEffect(() => {
 
   const delFolderNow = async (id: string) => {
     try {
+
+      if (folderData.importance === 'importance') {
+        toast.error('The default folder cannot be deleted!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+        return;
+      }
+
       await dispatch(deleteFolder(id));
       router.replace('/planner/myday');
     } catch (error) {
       console.error('An error occurred when deleting the folder:', error);
+      toast.error('An error occurred when deleting the folder!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 

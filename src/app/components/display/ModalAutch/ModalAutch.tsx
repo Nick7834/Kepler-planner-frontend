@@ -15,6 +15,7 @@ import instance from '@/service';
 import Image from 'next/image';
 import { setOpenBack } from '@/redux/slices/pin';
 import useKeyPress from '@/app/hooks/useKeyPress';
+import { Skeleton } from '@mui/material';
 
 interface openProfile {
     open: Boolean,
@@ -33,15 +34,21 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
 
     const profileRef = useRef<HTMLDivElement | null>(null);
 
+    const [loadingBack, setLoadingBack] = useState(false);
+
     const [backList, setBackList] = useState([]);
 
     const getFetchBackground = async () => {
+      setLoadingBack(true);
+
         try {
           const resp = await instance.get('/backgrounds');
           setBackList(resp.data);
         } catch(err) {
           console.error('Ошибка:', err);
-      }
+        } finally {
+          setLoadingBack(false);
+        }
     }
     
     const handBack = async (back: string) => {
@@ -51,11 +58,15 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
         backgroundImage: back
       }
 
+      setLoadingBack(true);
+
       try { 
         await instance.patch('/select-background', updateBack);
         dispatch(authSlice.actions.setBackground(back));
       } catch(err) {
         console.error('err:', err)
+      } finally {
+        setLoadingBack(false);
       }
     }
 
@@ -196,9 +207,15 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
                     <div className={`${styles.card} ${user?.backgroundImage ? `${styles.activeBack}` : ''}`}>
                       <Image src={user?.backgroundImage} width={209} height={100} alt='img'></Image>
                     </div>}
-                    {backList && backList.map((el, index) => (
-                      <div key={index} className={`${styles.card} ${el === user?.backgroundImage ? `${styles.activeBack}` : ''}`} onClick={() => handBack(el)}><Image src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${el}`} width={209} height={100} alt='img'></Image></div>
-                    ))}
+                    {loadingBack ? 
+                      ([...new Array(22)].map((_, index) => (
+                        <Skeleton key={index} variant="rounded" width={209} height={100} /> 
+                      )))
+                    : 
+                      backList.map((el, index) => (
+                        <div key={index} className={`${styles.card} ${el === user?.backgroundImage ? `${styles.activeBack}` : ''}`} onClick={() => handBack(el)}><Image src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${el}`} width={209} height={100} alt='img'></Image></div>
+                      )) 
+                    }
                 </div>
             </div>
 

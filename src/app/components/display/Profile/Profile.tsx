@@ -41,7 +41,7 @@ export const Profile = () => {
                 :
                 <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.avatarUrl}`} width={40} height={40} alt='avatar' className={styles.img_p}></Image>
             }
-            <p>{user?.fullName}</p>
+            <p>{user?.fullName.length > 10 ? user?.fullName.slice(0, 10) + '...' : user?.fullName}</p>
         </button>
 
         <ModalAutch open={profile} closeModal={closeProfiveModal} />

@@ -47,7 +47,7 @@ export const AllTaskDay = ({taskInfo}: any) => {
   
 
   return (
-    <div className={styles.all}>
+    <div className={`${styles.all}`}>
 
         <div className={styles.tasks}>
 
@@ -62,7 +62,7 @@ export const AllTaskDay = ({taskInfo}: any) => {
         value={newTask} 
         onChange={setNewTask} 
         onAddTask={handleAddTaskToday} 
-        className={newTask.length > 0 ? styles.activeAddTaskBack : ''}
+        className={newTask.length > 0 ? 'activeAddTaskBack' : ''}
         />
         </div>
 

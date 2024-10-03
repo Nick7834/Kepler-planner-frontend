@@ -75,7 +75,7 @@ export const Days = () => {
         </div>
 
         <div className={styles.text}>
-            <h1>{greeting}, {user?.fullName}</h1>
+            <h1 className={user?.fullName.length > 7 ? styles.big : ''}>{greeting}, {user?.fullName}</h1>
             <p>{randSloganDay}</p>
         </div>
 

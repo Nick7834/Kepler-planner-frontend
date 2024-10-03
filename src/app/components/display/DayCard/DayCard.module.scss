@@ -1,8 +1,8 @@
 .all_seven_task {
-    @apply flex items-start gap-[20px] overflow-auto transition-all duration-[.2s] ease-in-out;
+    @apply flex items-start gap-[20px] overflow-auto transition-all duration-[.2s] ease-in-out pb-[50px];
 
     @media (max-width: 1000px) {
-        @apply h-full px-[15px] pt-[100px] pb-[50px];
+        @apply h-full px-[15px] pt-[100px];
     }
 
     &::-webkit-scrollbar {

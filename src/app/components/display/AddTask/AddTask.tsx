@@ -51,7 +51,7 @@ export const AddTask: React.FC<AddTaskProps> = ({ value, onChange, onAddTask, cl
   }
 
   return (
-    <label className={`${styles.add_task} ${className}`}>
+    <label className={`${styles.add_task} ${className || ''}`}>
       <form>
         <textarea
           ref={textareaRef}

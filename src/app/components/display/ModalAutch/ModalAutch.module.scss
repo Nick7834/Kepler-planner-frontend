@@ -119,6 +119,12 @@
         padding: 20px 10px 90px;
         margin-top: 40px;
 
+        span {
+            max-width: 100%;
+            width: 100% !important;
+            border-radius: 10px;
+        }
+
         &::-webkit-scrollbar {
             @apply w-[7px];
         }
@@ -209,7 +215,7 @@
         }
 
         span {
-            @apply text-[14px] font-bold;
+            @apply text-[14px] font-bold text-center;
         }
 
         .fullName {

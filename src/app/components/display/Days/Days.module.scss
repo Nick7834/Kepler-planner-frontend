@@ -33,7 +33,7 @@
 
         .text {
             h1 {
-                @apply capitalize text-[#292929] text-[40px] font-bold font-['Ubuntu'] dark:text-white;
+                @apply capitalize text-[#292929] text-[40px] leading-[120%] font-bold font-['Ubuntu'] dark:text-white;
 
                 @media (max-width: 1000px) {
                     font-size: clamp(1.25rem, calc(0.662rem + 2.94vw), 2.5rem);
@@ -49,6 +49,11 @@
                     text-align: center;
                 }
             }
+        }
+        
+
+        .text .big {
+            @apply text-[35px];
         }
 
 }

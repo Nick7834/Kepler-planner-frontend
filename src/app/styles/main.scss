@@ -149,3 +149,7 @@
         opacity: 1;
     }
 }
+
+body .activeAddTaskBack {
+    @apply bg-[rgb(231,229,229)] dark:bg-[rgba(26,26,26)];
+}
