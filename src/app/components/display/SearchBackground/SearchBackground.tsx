@@ -79,9 +79,9 @@ export const SearchBackground = () => {
               <div className={styles.grids}>
 
               {loading ? (  
-                  <p className='m-auto col-span-4 font-bold'>Loading...</p>
+                  <p className='m-auto col-span-4 font-bold text-white'>Loading...</p>
                 ) : searchInitiated && resultsSearch.length === 0 ? (  
-                  <p className='m-auto col-span-4 font-bold'>No results</p>
+                  <p className='m-auto col-span-4 font-bold text-white'>No results</p>
                 ) : (
                   resultsSearch.map((cards, index) => (
                     <div 

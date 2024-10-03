@@ -13,6 +13,7 @@ import { motion } from "framer-motion"
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { startTransition } from 'react';
+import { Skeleton } from '@mui/material';
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,8 +27,8 @@ export default function Page() {
   const openRand = useSelector((state: RootState) => state.pin.openRandom);
 
   useEffect(() => {
-      dispatch(taskToday());
-      setIsLoader(false);
+    dispatch(taskToday());
+    setIsLoader(false);
   }, [dispatch]);
 
   // filter
@@ -46,14 +47,12 @@ export default function Page() {
 
   const handleAddTaskToday = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
         setNewTask('');
         const response = await instance.post('/tasks/today', { title: newTask });
         const newTasks = response.data;
         dispatch(addNewTaskTodays(newTasks))
         await dispatch(foldersAll());
-        setIsLoader(false)
     } catch (error) {
       console.error('An error occurred when creating the task!:', error)
       toast.error('An error occurred when creating the task!', {
@@ -76,14 +75,14 @@ export default function Page() {
 
         <Days />
 
-        <motion.div layout className='main__tasks'>
+        <motion.div className='main__tasks'>
 
-          {isLoader ? (
+        {isLoader ? (
             <Loader />
           ) : (
             tasksAllFilter.map((task: string, index: number) => <Task key={index} task={task} />).reverse()
           )}
-
+        
         </motion.div>
 
         <AddTask value={newTask} onChange={setNewTask} onAddTask={handleAddTaskToday} />

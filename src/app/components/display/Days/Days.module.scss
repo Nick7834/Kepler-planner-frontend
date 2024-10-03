@@ -33,7 +33,7 @@
 
         .text {
             h1 {
-                @apply capitalize text-[#292929] text-[40px] leading-[120%] font-bold font-['Ubuntu'] dark:text-white;
+                @apply flex gap-[5px] justify-center capitalize text-[#292929] text-[40px] leading-[120%] font-bold font-['Ubuntu'] dark:text-white;
 
                 @media (max-width: 1000px) {
                     font-size: clamp(1.25rem, calc(0.662rem + 2.94vw), 2.5rem);
@@ -49,6 +49,11 @@
                     text-align: center;
                 }
             }
+        }
+
+        .skeleton__day {
+            width: clamp(6.25rem, calc(4.567rem + 7.69vw), 9.375rem) !important;
+            height: clamp(1.563rem, calc(1.268rem + 1.47vw), 2.188rem) !important;
         }
         
 

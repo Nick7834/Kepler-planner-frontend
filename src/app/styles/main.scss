@@ -115,6 +115,10 @@
         }
 }
 
+.skeleton-today {
+    @apply w-full max-w-[650px] min-h-[105px] h-full rounded-[12px];
+}
+
 // back 
 
 .background {

@@ -4,6 +4,7 @@ import styles from './Days.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
+import { Skeleton } from '@mui/material';
 
 export const Days = () => {
 
@@ -75,7 +76,14 @@ export const Days = () => {
         </div>
 
         <div className={styles.text}>
-            <h1 className={user?.fullName.length > 7 ? styles.big : ''}>{greeting}, {user?.fullName}</h1>
+            <h1 className={user?.fullName.length > 7 ? styles.big : ''}>{greeting},
+                {user ? 
+                <span> {user?.fullName}</span> 
+                : 
+                <Skeleton className={styles.skeleton__day} variant="rounded" width={150} height={35} />
+                }
+
+            </h1>
             <p>{randSloganDay}</p>
         </div>
 
