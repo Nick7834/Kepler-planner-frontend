@@ -91,8 +91,6 @@ export default function Page() {
             <Loader />
         }
 
-        
-        
         </motion.div>
 
         <AddTask value={newTask} onChange={setNewTask} onAddTask={handleAddTaskToday} />
