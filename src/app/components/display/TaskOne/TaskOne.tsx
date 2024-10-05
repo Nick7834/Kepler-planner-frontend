@@ -25,7 +25,7 @@ export const TaskOne = ({ taskData }: any) => {
 
     const handleCheckboxChange = async (id: string) => {
       const newDone = !done;
-      setDone(newDone);
+      setDone(newDone);  
       const newPin = false;
       setPin(newPin);
       await handPatchTask(id, newDone, newPin);

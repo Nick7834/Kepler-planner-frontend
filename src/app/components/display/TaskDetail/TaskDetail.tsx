@@ -63,7 +63,7 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
 
   useEffect(() => {
     setSelectedTaskId(null);
-  }, [data, folderId]);
+  }, [data, folderId, setSelectedTaskId]);
 
   useEffect(() => {
     if (taskCheck && taskIdSatate) {
@@ -93,7 +93,7 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
         }
       }
     }
-  }, [taskDefault, data, folderId, selectedTaskId, taskCheck, taskIdSatate]); 
+  }, [taskDefault, data, folderId, selectedTaskId, taskCheck, taskIdSatate, dispatch]); 
   
   
   useEffect(() => {
@@ -113,7 +113,7 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
   
       taskDetailNow();
     }
-  }, [taskDefault, folderName, selectedTaskId, folderId]);
+  }, [taskDefault, folderName, selectedTaskId, folderId, data, dispatch]);
 
     useEffect(() => {
     const taskDetailNow = async () => {
