@@ -116,7 +116,7 @@
 }
 
 .skeleton-today {
-    @apply w-full max-w-[650px] min-h-[105px] h-full rounded-[12px];
+    @apply w-full max-w-[650px] min-h-[81px] h-[81px] rounded-[12px] bg-[rgb(231,229,229,0.3)] dark:bg-[rgba(26,26,26,0.3)];
 }
 
 // back 

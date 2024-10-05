@@ -54,6 +54,7 @@
         .skeleton__day {
             width: clamp(6.25rem, calc(4.567rem + 7.69vw), 9.375rem) !important;
             height: clamp(1.563rem, calc(1.268rem + 1.47vw), 2.188rem) !important;
+            @apply bg-[rgb(231,229,229,0.6)];
         }
         
 

@@ -20,6 +20,8 @@ export default function Page() {
   const { todayTasks } = useSelector((state: RootState) => state.tasks);
   const { items: taskItems } = todayTasks;
 
+  const user = useSelector((state: RootState) => state.auth.data) as any; 
+
   const [isLoader, setIsLoader] = useState(true);
 
   const isPinned = useSelector((state: RootState) => state.pin.pin);
@@ -77,11 +79,19 @@ export default function Page() {
 
         <motion.div className='main__tasks'>
 
-        {isLoader ? (
+          {user ? 
+            (isLoader ? (
+              [...Array(5)].map((_, index) => (
+                <Skeleton className='skeleton-today' key={index} variant="rounded" />
+              ))
+            ) : (
+              tasksAllFilter.map((task: string, index: number) => <Task key={index} task={task} />).reverse()
+            ))
+            :
             <Loader />
-          ) : (
-            tasksAllFilter.map((task: string, index: number) => <Task key={index} task={task} />).reverse()
-          )}
+        }
+
+        
         
         </motion.div>
 

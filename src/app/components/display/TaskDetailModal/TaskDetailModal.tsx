@@ -17,6 +17,7 @@ import { AppDispatch, RootState } from '@/redux/store';
 import { deleteTask, taskToday, taskWeek, updateTask } from '@/redux/slices/tasks';
 import { useConfirmContext } from '@/app/context/ConfirmContext';
 import Link from 'next/link';
+import { Skeleton } from '@mui/material';
 
 interface Task {
   title: string;
@@ -239,29 +240,48 @@ export const TaskDetailModal = () => {
         <div ref={modalRef} className={`${styles.taskModal} ${modalOpenTask ? `${styles.openModal}` : ''} ${done ? `${styles.doneTaskModal}` : ''}`}>
 
             <div className={styles.top}>
-               <Link onClick={handGoLink} href={`/planner/folder/${data?.folderId}`} className={styles.map}><span>My lists</span><IoIosArrowForward /><span>{data?.folder}</span></Link>
+              {!data ? <Skeleton variant="rounded" className='bg-[rgb(231,229,229,0.6)]' width={158} height={21} />
+              :
+              <Link onClick={handGoLink} href={`/planner/folder/${data?.folderId}`} className={styles.map}>
+                <span>My lists</span>
+                <IoIosArrowForward />
+                <span>{data?.folder}</span>
+               </Link> }
+
 
                 <div className={styles.right}>
-                    <button onClick={() => taskCheckDone(data?._id)}>{done ? <BsCheckCircleFill className={styles.checkActive} /> : <BsCheckCircle />}</button>
-                    <button onClick={() => taskAddToday(data?._id)}><GoGoal className={`${taskItems.find(task => task._id === data?._id) ? `${styles.todayTask}` : ''}`} /></button>
-                    <button onClick={confirmDelTaskModal}><FaRegTrashCan /></button>
-                    <button onClick={() => setModalOpenTask(!modalOpenTask)}><IoClose /></button>
+                    {!data ? 
+                    ([...Array(3)].map((_, index) => (
+                      <Skeleton key={index} variant="rounded" className='bg-[rgb(231,229,229,0.6)] w-[25px] h-[25px] rounded-full' />
+                    ))) :
+                      <>
+                      <button onClick={() => taskCheckDone(data?._id)}>{done ? <BsCheckCircleFill className={styles.checkActive} /> : <BsCheckCircle />}</button>
+                      <button onClick={() => taskAddToday(data?._id)}><GoGoal className={`${taskItems.find(task => task._id === data?._id) ? `${styles.todayTask}` : ''}`} /></button>
+                      <button onClick={confirmDelTaskModal}><FaRegTrashCan /></button>
+                      </>
+                  }
+                  <button onClick={() => setModalOpenTask(!modalOpenTask)}><IoClose /></button>
                 </div> 
             </div>
 
             <div className={styles.scrolls}>
-              <textarea
-                ref={textareaRef}
-                maxLength={1000}
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-                onBlur={() => patchTask(data?._id)}
-                onInput={inputHeight}
-                onKeyDown={handleKeyDown}
-              ></textarea>
+              {!data ? 
+                ([...Array(5)].map((_, index) => (
+                  <Skeleton key={index} variant="rounded" className='bg-[rgb(231,229,229,0.6)] w-full max-w-full first:mt-0 mt-2' height={40} />
+                ))) :
+                  <textarea
+                  ref={textareaRef}
+                  maxLength={1000}
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                  onBlur={() => patchTask(data?._id)}
+                  onInput={inputHeight}
+                  onKeyDown={handleKeyDown}
+                ></textarea>
+              }
 
               <div className={styles.categories}>
-                  <button><FaFolder />{data?.folder}</button>
+                  <button><FaFolder />{!data ? <Skeleton variant="rounded" className='bg-[rgb(231,229,229,0.6)]' width={82} height={17} /> : data?.folder}</button>
               </div>
             </div>
 
