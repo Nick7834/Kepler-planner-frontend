@@ -47,6 +47,8 @@ export const TaskDetailModal = () => {
     const [done, setDone] = useState(data?.done);
     const [pin, setPin] = useState(false);
 
+    const [loading, setLoading] = useState(true);
+
     const inputHeight = () => {
       if (textareaRef.current) {
         textareaRef.current.style.height = '25px';
@@ -100,12 +102,15 @@ export const TaskDetailModal = () => {
       if(!selectedTaskId) return;
 
       const taskDetailNow = async () => {
+        setLoading(true);
         try {
           const res = await instance.get(`/tasks/${selectedTaskId}`);
           setData(res.data);
           setTitle(res.data?.title); 
         } catch(err) {
           console.error('Error', err);
+        } finally {
+          setLoading(false);
         }
       }
 
@@ -240,7 +245,7 @@ export const TaskDetailModal = () => {
         <div ref={modalRef} className={`${styles.taskModal} ${modalOpenTask ? `${styles.openModal}` : ''} ${done ? `${styles.doneTaskModal}` : ''}`}>
 
             <div className={styles.top}>
-              {!data ? <Skeleton variant="rounded" className='bg-[rgb(231,229,229,0.6)]' width={158} height={21} />
+              {loading ? <Skeleton variant="rounded" className='bg-[rgb(231,229,229,0.6)] dark:bg-[rgba(48,48,48,0.9)]' width={158} height={21} />
               :
               <Link onClick={handGoLink} href={`/planner/folder/${data?.folderId}`} className={styles.map}>
                 <span>My lists</span>
@@ -250,9 +255,9 @@ export const TaskDetailModal = () => {
 
 
                 <div className={styles.right}>
-                    {!data ? 
+                    {loading ? 
                     ([...Array(3)].map((_, index) => (
-                      <Skeleton key={index} variant="rounded" className='bg-[rgb(231,229,229,0.6)] w-[25px] h-[25px] rounded-full' />
+                      <Skeleton key={index} variant="rounded" className='bg-[rgba(214,212,212,0.9)] dark:bg-[rgba(48,48,48,0.9)] w-[25px] h-[25px]' width={25} height={25} />
                     ))) :
                       <>
                       <button onClick={() => taskCheckDone(data?._id)}>{done ? <BsCheckCircleFill className={styles.checkActive} /> : <BsCheckCircle />}</button>
@@ -265,9 +270,9 @@ export const TaskDetailModal = () => {
             </div>
 
             <div className={styles.scrolls}>
-              {!data ? 
+              {loading ? 
                 ([...Array(5)].map((_, index) => (
-                  <Skeleton key={index} variant="rounded" className='bg-[rgb(231,229,229,0.6)] w-full max-w-full first:mt-0 mt-2' height={40} />
+                  <Skeleton key={index} variant="rounded" className='bg-[rgba(214,212,212,0.9)] dark:bg-[rgba(48,48,48,0.9)] w-full max-w-full first:mt-0 mt-2' height={40} />
                 ))) :
                   <textarea
                   ref={textareaRef}
@@ -281,7 +286,7 @@ export const TaskDetailModal = () => {
               }
 
               <div className={styles.categories}>
-                  <button><FaFolder />{!data ? <Skeleton variant="rounded" className='bg-[rgb(231,229,229,0.6)]' width={82} height={17} /> : data?.folder}</button>
+                  <button><FaFolder />{loading ? <Skeleton variant="rounded" className='bg-[rgba(214,212,212,0.9)] dark:bg-[rgba(48,48,48,0.9)]' width={82} height={17} /> : data?.folder}</button>
               </div>
             </div>
 

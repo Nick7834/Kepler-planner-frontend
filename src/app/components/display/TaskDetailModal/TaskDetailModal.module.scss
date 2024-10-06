@@ -92,6 +92,10 @@
     .right {
        @apply flex items-center gap-[12px];
 
+       span {
+        @apply rounded-full;
+       }
+
         button {
 
            svg {

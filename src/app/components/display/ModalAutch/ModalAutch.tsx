@@ -209,7 +209,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
                     </div>}
                     {loadingBack ? 
                       ([...new Array(22)].map((_, index) => (
-                        <Skeleton key={index} variant="rounded" width={209} height={100} /> 
+                        <Skeleton key={index} variant="rounded" className='bg-[rgba(214,212,212,0.9)] dark:bg-[rgba(48,48,48,0.9)]' width={209} height={100} /> 
                       )))
                     : 
                       backList.map((el, index) => (
