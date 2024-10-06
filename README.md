@@ -1,4 +1,4 @@
-#Kepler Planner - this is an application for task planning, time management, goal setting and more.
+Kepler Planner - this is an application for task planning, time management, goal setting and more.
 
 Project Stack: 
 
