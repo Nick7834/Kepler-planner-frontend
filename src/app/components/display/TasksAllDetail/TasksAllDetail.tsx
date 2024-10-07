@@ -142,14 +142,16 @@ export const TaskAllDetail = ({taskDefault}: any) => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); 
-
-      if (!data?.title.trim()) return;
-   
-      patchTask(data?._id); 
-      
+      if(e.shiftKey) {
+        return; 
+      } else {
+          e.preventDefault(); 
+          if (!data?.title.trim()) return;
+          patchTask(data?._id); 
+      }
     }
   };
+  
 
   const confirmDelTask = () => {
     setConfirmOpen(true);

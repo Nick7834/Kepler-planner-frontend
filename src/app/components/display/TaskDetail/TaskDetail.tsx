@@ -46,7 +46,6 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-
   const inputHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = '25px';
@@ -59,7 +58,7 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
       const nowDone = taskDefault?.tasks.find((task: any) => task._id === data?._id);
       setIdDone(prevState => nowDone?.done ?? prevState);
     }
-  }, [taskDefault, data])
+  }, [taskDefault, data]);
 
   useEffect(() => {
     setSelectedTaskId(null);
@@ -94,7 +93,6 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
       }
     }
   }, [taskDefault, data, folderId, selectedTaskId, taskCheck, taskIdSatate, dispatch]); 
-  
   
   useEffect(() => {
     if(!selectedTaskId) return;
@@ -136,7 +134,6 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
 
     taskDetailNow();
   }, [taskDefault, folderName, data])
-  
 
   useEffect(() => {
     inputHeight()
@@ -164,12 +161,13 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); 
-
-      if (!data?.title.trim()) return;
-   
-      patchTask(data?._id); 
-      
+      if(e.shiftKey) {
+        return; 
+      } else {
+          e.preventDefault(); 
+          if (!data?.title.trim()) return;
+          patchTask(data?._id); 
+      }
     }
   };
 
@@ -271,7 +269,6 @@ export const TaskDetail = ({taskDefault, folderId, folderName}: any) => {
       }
   }
 
-  
   return (
     <div className={`${styles.task_detail} ${idDone ? `${styles.taskDone}` : ''}`}>
 
