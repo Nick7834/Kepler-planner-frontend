@@ -193,6 +193,8 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
                     <span className={styles.fullName}>{user?.fullName}</span>
                     <span>{user?.email}</span>
                 </div>
+
+                <span>-v {process.env.NEXT_PUBLIC_VERSION}</span>
             </div>
 
             <div className={`${styles.blocks} ${styles.background} ${tabs === 2 ? `${styles.active_tab}` : ''}`}>

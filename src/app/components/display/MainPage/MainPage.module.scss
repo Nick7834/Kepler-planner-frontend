@@ -17,10 +17,18 @@
                 li {
                     a {
                         @apply flex items-center gap-[10px] py-[10px] px-[25px] bg-[#5552D2] text-white text-[16px] font-medium 
-                        leading-[1px] font-['Ubuntu'] rounded-[12px] transition duration-[.5s] ease-in-out;
+                        leading-[1px] font-['Ubuntu'] rounded-[12px] transition-all active:translate-y-1;
+
+                        svg {
+                            @apply transition-all;
+                        }
 
                             &:hover {
                                 @apply bg-[#7775F0];
+
+                                svg {
+                                    @apply translate-x-1;
+                                }
                             }
                     }
                 }
@@ -56,10 +64,18 @@
         a {
             @apply mt-[65px] flex items-center gap-[10px] px-[25px] py-[12px] bg-[#D9D9D9]
             text-black text-[20px] font-normal leading-normal rounded-[12px] w-fit
-            transition-all duration-[.5s] ease-in-out;
+            transition-all active:translate-y-1;
+
+                svg {
+                    @apply transition-all;
+                }
 
                 &:hover {
                     @apply bg-[#b6b6b6];
+
+                    svg {
+                        @apply translate-x-1;
+                    }
                 }
         }
 

@@ -85,7 +85,7 @@ export default function Page() {
                 <Skeleton className='skeleton-today' key={index} variant="rounded" />
               ))
             ) : (
-              tasksAllFilter.map((task: string, index: number) => <Task key={index} task={task} />).reverse()
+              tasksAllFilter.map((task: string, index: number) => <Task key={index} task={task}  />).reverse()
             ))
             :
             <Loader />

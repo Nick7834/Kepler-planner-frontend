@@ -172,9 +172,14 @@
 // profile 
 
 .profile {
+    @apply flex flex-col gap-[20px];
 
     h2 {
         @apply pt-[10px] text-[20px] font-bold text-center;
+    }
+
+    > span {
+        @apply mt-auto text-xs text-center;
     }
 
     .info {

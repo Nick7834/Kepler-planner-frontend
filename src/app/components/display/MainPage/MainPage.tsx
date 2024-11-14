@@ -3,7 +3,7 @@ import styles from './MainPage.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import { IoIosArrowForward } from "react-icons/io";
-import { CiLogin } from "react-icons/ci";
+import { IoLogIn } from "react-icons/io5";
 
 export const MainPage = () => {
   return (
@@ -24,7 +24,7 @@ export const MainPage = () => {
 
                     <nav className={styles.header_nav}>
                       <ul>
-                          <li><Link href="/log-in">Log in <CiLogin /></Link></li>
+                          <li><Link href="/">Log in <IoLogIn size={20} /></Link></li>
                       </ul>
                     </nav>
 
@@ -104,7 +104,7 @@ export const MainPage = () => {
         </main>
 
         <footer className={styles.footer}>
-            <span>© 2024 KeplerMedia, Inc</span>
+            <span>© {new Date().getFullYear()} KeplerMedia, Inc</span>
         </footer>
         
     </div>

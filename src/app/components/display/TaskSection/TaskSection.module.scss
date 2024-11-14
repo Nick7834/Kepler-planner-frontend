@@ -16,7 +16,7 @@
     }
 
     .tasks {
-       @apply flex flex-col gap-[15px] overflow-auto;
+       @apply flex flex-col gap-[15px] overflow-auto select-none;
 
        &::-webkit-scrollbar {
             @apply w-[7px];

@@ -59,7 +59,12 @@
         label {
             background-color: none !important;
             backdrop-filter: none !important;
-            @apply border-[#292929] dark:border-white 
+            @apply border-[#292929] dark:border-white;
+
+            
+                &:focus-within {
+                    @apply border-[#00b3ff];
+                }
         }
 
         textarea {
@@ -74,6 +79,12 @@
 
             svg {
                 @apply text-[#292929] dark:text-white;
+            }
+
+            &:hover {
+                svg {
+                    @apply text-[#00B2FF];
+                }
             }
 
         }

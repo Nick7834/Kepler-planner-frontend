@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 'use client'
 import React, { useState, useEffect, ReactNode } from 'react'
 import { Dashboard } from '../components/display/Dashboard/Dashboard';
