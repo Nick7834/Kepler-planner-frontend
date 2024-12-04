@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import styles from './Folders.module.scss'
 
 import { IoMdAddCircleOutline } from "react-icons/io";
@@ -34,13 +34,13 @@ export const Folders = () => {
         setIsLoader(false)
     }, [dispatch]);
 
-    const toggleFolder = () => {
+    const toggleFolder = useCallback(() => {
         if(useList.current) {
             const newHeight = folder ? '0px' : `${useList.current.scrollHeight}px`;
             useList.current.style.maxHeight = newHeight;
             setFolder(!folder);
         }
-    }
+    }, [folder]);
 
     const handFolderClick = (e: any) => {
       e.stopPropagation()
