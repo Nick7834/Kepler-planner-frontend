@@ -35,13 +35,13 @@ export const Folders = () => {
     }, [dispatch]);
 
     const toggleFolder = useCallback(() => {
-        if(useList.current) {
-            const newHeight = folder ? '0px' : `${useList.current.scrollHeight}px`;
-            useList.current.style.maxHeight = newHeight;
-            setFolder(!folder);
-        }
-    }, [folder, useList]);
-
+      if (useList.current) {
+          const newHeight = folder ? '0px' : `${useList.current.scrollHeight}px`;
+          useList.current.style.maxHeight = newHeight;
+          setFolder((prevFolder) => !prevFolder);
+      }
+  }, [folder, items]);
+    
     const handFolderClick = (e: any) => {
       e.stopPropagation()
       dispatch(setOpenFolder(true))
