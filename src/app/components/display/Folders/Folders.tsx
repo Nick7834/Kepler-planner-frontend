@@ -40,7 +40,7 @@ export const Folders = () => {
             useList.current.style.maxHeight = newHeight;
             setFolder(!folder);
         }
-    }, [folder]);
+    }, [folder, useList]);
 
     const handFolderClick = (e: any) => {
       e.stopPropagation()
