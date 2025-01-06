@@ -83,11 +83,11 @@
         }
 
         .registration {
-            @apply absolute top-0 right-0 w-[100%] h-[100%]
+            @apply absolute top-0 right-0 w-[100%] h-[100%] invisible
             transition-all duration-[.3s] ease-in-out translate-x-[150%];
 
             &.reg_active {
-                @apply translate-x-0;
+                @apply translate-x-0 visible;
             }
 
         }

@@ -101,6 +101,70 @@ export const Login = () => {
 
             <div className={styles.form_blocks}>
 
+                <div className={`${styles.log_in_block} ${activeReg ? `${styles.login_active}` : ''}`}>
+
+    <form onSubmit={loginHandleSubmit(onSubmit)}>
+
+      <div className={styles.inputs}>
+
+            <TextField 
+              label="Email"
+              variant="outlined"
+              className={styles.input}
+              type="email"
+              sx={{
+                "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor: "white"
+                  }
+                },
+
+                "& .MuiOutlinedInput-root.Mui-focused": {
+                  "& > fieldset": {
+                    borderColor: "white"
+                  }
+                }
+            
+              }} 
+              error={Boolean(loginErrors.email?.message)}
+              helperText={loginErrors.email?.message}
+              {...loginRegister('email', { required: 'Specify the email address' })}
+            />
+
+            <TextField 
+              label="Password"
+              variant="outlined"
+              className={styles.input}
+              type="password"
+              sx={{
+                "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor: "white"
+                  }
+                },
+
+                "& .MuiOutlinedInput-root.Mui-focused": {
+                  "& > fieldset": {
+                    borderColor: "white"
+                  }
+                }
+            
+              }} 
+              error={Boolean(loginErrors.password?.message)}
+              helperText={loginErrors.password?.message}
+              {...loginRegister('password', { required: 'Enter the password' })}
+            />
+
+      </div>
+
+      <AuthButton name='Log In' />
+
+    </form>
+
+    <button className={styles.login_button} onClick={() => setActiveReg(true)}>Create Account</button>
+
+                </div>
+
                 <div className={`${styles.registration} ${activeReg ? `${styles.reg_active}` : ''}`}>
 
                   <form onSubmit={regHandleSubmit(onSubmitReg)}>
@@ -210,70 +274,6 @@ export const Login = () => {
                   </form>
 
                   <button className={styles.login_button}  onClick={() => setActiveReg(false)}>Log in</button>
-
-                </div>
-
-                <div className={`${styles.log_in_block} ${activeReg ? `${styles.login_active}` : ''}`}>
-
-                  <form onSubmit={loginHandleSubmit(onSubmit)}>
-
-                    <div className={styles.inputs}>
-
-                          <TextField 
-                            label="Email"
-                            variant="outlined"
-                            className={styles.input}
-                            type="email"
-                            sx={{
-                              "& .MuiOutlinedInput-root:hover": {
-                                "& > fieldset": {
-                                  borderColor: "white"
-                                }
-                              },
-
-                              "& .MuiOutlinedInput-root.Mui-focused": {
-                                "& > fieldset": {
-                                  borderColor: "white"
-                                }
-                              }
-                          
-                            }} 
-                            error={Boolean(loginErrors.email?.message)}
-                            helperText={loginErrors.email?.message}
-                            {...loginRegister('email', { required: 'Specify the email address' })}
-                          />
-
-                          <TextField 
-                            label="Password"
-                            variant="outlined"
-                            className={styles.input}
-                            type="password"
-                            sx={{
-                              "& .MuiOutlinedInput-root:hover": {
-                                "& > fieldset": {
-                                  borderColor: "white"
-                                }
-                              },
-
-                              "& .MuiOutlinedInput-root.Mui-focused": {
-                                "& > fieldset": {
-                                  borderColor: "white"
-                                }
-                              }
-                          
-                            }} 
-                            error={Boolean(loginErrors.password?.message)}
-                            helperText={loginErrors.password?.message}
-                            {...loginRegister('password', { required: 'Enter the password' })}
-                          />
-
-                    </div>
-
-                    <AuthButton name='Log In' />
-
-                  </form>
-
-                  <button className={styles.login_button} onClick={() => setActiveReg(true)}>Create Account</button>
 
                 </div>
 
