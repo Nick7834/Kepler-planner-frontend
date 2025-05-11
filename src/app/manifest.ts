@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'KeplerPlanner',
     short_name: 'KeplerPlanner',
     description: 'Planning that Inspires Success!',
-    start_url: '/',
+    start_url: '/planner/myday',
     display: 'standalone',
     background_color: '#ffffff',
     theme_color: '#000000',
