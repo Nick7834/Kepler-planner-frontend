@@ -38,7 +38,7 @@ export const MainPage = () => {
                 <div className="container">
                     <div className={styles.block_info}>
 
-                        <h1>Kepler Planner</h1>
+                        <h1>KeplerPlanner</h1>
 
                         <p>Planning that Inspires Success!</p>
 

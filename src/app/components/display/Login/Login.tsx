@@ -90,14 +90,14 @@ export const Login = () => {
                     height={72}
                     alt='logo'
                   />
-                  <span>Kepler Planner</span>
+                  <span>KeplerPlanner</span>
               </div>
 
         </div>
 
         <div className={styles.block_right}>
 
-            <h2>Welcome to Kepler Planner</h2>
+            <h2>Welcome to KeplerPlanner</h2>
 
             <div className={styles.form_blocks}>
 

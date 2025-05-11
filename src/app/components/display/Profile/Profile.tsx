@@ -41,7 +41,7 @@ export const Profile = () => {
             {!user?.avatarUrl.length ? 
                 <Skeleton variant="rounded" />
                 :
-                <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.avatarUrl}`} width={40} height={40} alt='avatar' className={styles.img_p}></Image>
+                <Image src={user?.avatarUrl && user?.avatarUrl} width={40} height={40} alt='avatar' className={styles.img_p}></Image>
             }
             {user ? <p>{user?.fullName.length > 10 ? user?.fullName.slice(0, 10) + '...' : user?.fullName}</p> 
             : <Skeleton variant="rounded" width={100} height={24} />}

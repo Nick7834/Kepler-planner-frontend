@@ -1,6 +1,6 @@
-# Kepler Planner
+# KeplerPlanner
 
-**Kepler Planner** is a powerful application designed for task planning, time management, and goal setting. Whether you're a student, a professional, or anyone looking to enhance productivity, Kepler Planner helps you stay organized and focused.
+**KeplerPlanner** is a powerful application designed for task planning, time management, and goal setting. Whether you're a student, a professional, or anyone looking to enhance productivity, KeplerPlanner helps you stay organized and focused.
 
 ## 📋 Features
 

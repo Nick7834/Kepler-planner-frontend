@@ -7,8 +7,8 @@ import MainComponents from "./MainComponents";
 import { useEffect } from "react";
 
 export const metadata: Metadata = {
-  title: "Kepler Planner",
-  description: "Kepler Planner",
+  title: "KeplerPlanner",
+  description: "Planning that Inspires Success!",
 };
 
 export default function RootLayout({

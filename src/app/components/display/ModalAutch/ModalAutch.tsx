@@ -187,7 +187,7 @@ const ModalAutch = ({ open, closeModal }: openProfile) => {
                         <label htmlFor='file'>
                             {!user?.avatarUrl.length ? 
                              <span></span>
-                             :  <Image src={user?.avatarUrl && `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5555'}${user?.avatarUrl}`} width={70} height={70} alt='avatar'></Image>}
+                             :  <Image src={user?.avatarUrl && user?.avatarUrl} width={70} height={70} alt='avatar'></Image>}
                         </label>
                     </div>
                     <span className={styles.fullName}>{user?.fullName}</span>
