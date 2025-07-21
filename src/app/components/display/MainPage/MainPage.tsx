@@ -104,7 +104,7 @@ export const MainPage = () => {
         </main>
 
         <footer className={styles.footer}>
-            <span>© {new Date().getFullYear()} KeplerMedia, Inc</span>
+            <span>© {new Date().getFullYear()} KeplerMedia</span>
         </footer>
         
     </div>
